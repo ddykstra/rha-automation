@@ -10,10 +10,12 @@ xpath				:xpath/
 #Add a group
 
 #BROWSER: FIREFOX
+require "rubygems"
 require "selenium-webdriver"
  browser = Selenium::WebDriver.for :firefox
   browser.get "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2flogin.windows.net%2f&wreply=https%3a%2f%2flogin.windows.net%2frhadev.onmicrosoft.com%2fwsfederation&wctx=3wEBDFdzRmVkZXJhdGlvbgENVXNlck9ubHlUb2tlbgEWcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbQEBAQZzYW1sMjAAAAEBJWh0dHBzOi8vcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbS9yaGF3ZWIAAAEBAQxyZXBseWFkZHJlc3MBHWh0dHBzOi8vcmhhLmF6dXJld2Vic2l0ZXMubmV0AQUBAnJjARZybT0wJmlkPXBhc3NpdmUmcnU9JTJmAQ9saW1pdF90b2tlbnNpemUBBUZhbHNlAQtpbnRlcmFjdGl2ZQEEVHJ1ZQEPRm9yY2VGcmVzaExvZ2luAQVGYWxzZQEJc2Vzc2lvbklkASRjODA0ZTkyYi04YTc5LTQ0N2QtYjYxZi00Y2ZjOWExYWVhZjTt0&wp=MBI_FED_SSL&id="
   #browser.window.resize_to(1680,1050)
+  #driver.manage.timeouts.implicit_wait = 10
    browser.current_url
 	browser.title
 
@@ -23,11 +25,54 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_sign_in_button").click
 		sleep(2)
 
-	#Navigate to the System Configuration page, clicks Group on left nav, and then click Add Group button
-		browser.find_element(xpath: "/html/body/header/ul[1]/li[5]/a").click
-		browser.find_element(xpath: "/html/body/div[1]/div[1]/div/ul/li[2]/a").click
-		browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/div/div[3]/a").click
-		sleep(2)
+	#Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "Services").click
+		#Clicks Add Service
+			browser.find_element(xpath: "/html/body/div/div[2]/div/div[2]/div/div[3]/a").click
+				sleep(2)
+
+	#Fill in Service data to add and save.
+		#Entering in data
+			browser.find_element(id: "ServiceModel_Name").send_keys "AddedByAutomationService1" #name
+			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]").click #service category drop down
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(1) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "eye" #enters a selection
+					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(1) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]").send_keys :tab
+			browser.find_element(id: "ServiceModel_UsualCharge").click #usual charge field
+				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
+				
+
+				#String serviceCategory = "test service category";
+				#WebElement select = browser.findElement(By.id(id));
+				#WebElement option = select.findElement(By.xpath("/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]/div,'" + serviceCategory + "')]"));
+					#option.click();
+
+			#browser.find_element(class_name: "selectize-input[data-value='1']").click
+
+			
+			
+
+
+			#ServiceModel_ServiceCategories_SelectedValue.click
+			#ServiceModel_ServiceCategories_SelectedValue.find_elements(:tag_name => "Eye Service").find do |option| option.text == value
+			#end.click
+
+			#@@driver.find_element(id: "ServiceModel_ServiceCategories_SelectedValue").find_element(css: "option[value='1']").click
+				
+				#browser.find_element(id: "ServiceModel_ServiceCategories_SelectedValue").click
+				#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]/div").click
+
+
+
+
+
+
+
+		#Clicks Save
+			browser.find_element(xpath: "/html/body/div/div[2]/div/form/div/ul/li[2]/button")	
 
 =begin
 	#REMOVE
