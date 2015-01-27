@@ -7,8 +7,6 @@ partial link text	:partial_link_text
 tag name			:tag_name	 
 xpath				:xpath/
 
-#Add a group
-
 #BROWSER: FIREFOX
 require "rubygems"
 require "selenium-webdriver"

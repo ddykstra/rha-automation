@@ -1,0 +1,148 @@
+/class name			:class_name			:class
+css selector		:css	 
+id					:id	 
+link text			:link_text			:link
+name				:name	 
+partial link text	:partial_link_text	 
+tag name			:tag_name	 
+xpath				:xpath/
+
+
+#BROWSER: FIREFOX
+require "rubygems"
+require "selenium-webdriver"
+#require 'watir'
+require 'watir-webdriver'
+#require "watir-webdriver/extensions/wait"
+
+#browser = Watir::Browser.new
+#browser = Watir::Browser.new :ff
+#browser = Watir::Browser.new :chrome
+#browser.goto("https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2flogin.windows.net%2f&wreply=https%3a%2f%2flogin.windows.net%2frhadev.onmicrosoft.com%2fwsfederation&wctx=3wEBDFdzRmVkZXJhdGlvbgENVXNlck9ubHlUb2tlbgEWcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbQEBAQZzYW1sMjAAAAEBJWh0dHBzOi8vcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbS9yaGF3ZWIAAAEBAQxyZXBseWFkZHJlc3MBHWh0dHBzOi8vcmhhLmF6dXJld2Vic2l0ZXMubmV0AQUBAnJjARZybT0wJmlkPXBhc3NpdmUmcnU9JTJmAQ9saW1pdF90b2tlbnNpemUBBUZhbHNlAQtpbnRlcmFjdGl2ZQEEVHJ1ZQEPRm9yY2VGcmVzaExvZ2luAQVGYWxzZQEJc2Vzc2lvbklkASRjODA0ZTkyYi04YTc5LTQ0N2QtYjYxZi00Y2ZjOWExYWVhZjTt0&wp=MBI_FED_SSL&id=")
+
+
+ browser = Selenium::WebDriver.for :firefox
+  #driver = Selenium::WebDriver.for :firefox
+
+   #driver.navigate.to 'https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2flogin.windows.net%2f&wreply=https%3a%2f%2flogin.windows.net%2frhadev.onmicrosoft.com%2fwsfederation&wctx=3wEBDFdzRmVkZXJhdGlvbgENVXNlck9ubHlUb2tlbgEWcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbQEBAQZzYW1sMjAAAAEBJWh0dHBzOi8vcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbS9yaGF3ZWIAAAEBAQxyZXBseWFkZHJlc3MBHWh0dHBzOi8vcmhhLmF6dXJld2Vic2l0ZXMubmV0AQUBAnJjARZybT0wJmlkPXBhc3NpdmUmcnU9JTJmAQ9saW1pdF90b2tlbnNpemUBBUZhbHNlAQtpbnRlcmFjdGl2ZQEEVHJ1ZQEPRm9yY2VGcmVzaExvZ2luAQVGYWxzZQEJc2Vzc2lvbklkASRjODA0ZTkyYi04YTc5LTQ0N2QtYjYxZi00Y2ZjOWExYWVhZjTt0&wp=MBI_FED_SSL&id='
+
+  browser.get "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2flogin.windows.net%2f&wreply=https%3a%2f%2flogin.windows.net%2frhadev.onmicrosoft.com%2fwsfederation&wctx=3wEBDFdzRmVkZXJhdGlvbgENVXNlck9ubHlUb2tlbgEWcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbQEBAQZzYW1sMjAAAAEBJWh0dHBzOi8vcmhhZGV2Lm9ubWljcm9zb2Z0LmNvbS9yaGF3ZWIAAAEBAQxyZXBseWFkZHJlc3MBHWh0dHBzOi8vcmhhLmF6dXJld2Vic2l0ZXMubmV0AQUBAnJjARZybT0wJmlkPXBhc3NpdmUmcnU9JTJmAQ9saW1pdF90b2tlbnNpemUBBUZhbHNlAQtpbnRlcmFjdGl2ZQEEVHJ1ZQEPRm9yY2VGcmVzaExvZ2luAQVGYWxzZQEJc2Vzc2lvbklkASRjODA0ZTkyYi04YTc5LTQ0N2QtYjYxZi00Y2ZjOWExYWVhZjTt0&wp=MBI_FED_SSL&id="
+  
+
+  #browser.window.resize_to(1680,1050)
+  #driver.manage.timeouts.implicit_wait = 10
+   browser.current_url
+	browser.title
+
+	#Login screen
+		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
+		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
+		browser.find_element(id: "cred_sign_in_button").click
+		browser.find_element(id: "cred_sign_in_button").send_keys :return
+		sleep(2)
+
+	#Navigate to the System Configuration page, clicks Cost Centers on left nav, and then click Add Program button
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Cost Centers on left Nav
+			browser.find_element(link_text: "Cost Centers").click
+		#Clicks Add Cost Center
+			browser.find_element(xpath: "/html/body/div/div[2]/div/div[2]/div/div[3]/a").click
+
+	#Fill in Cost Center data to add and save.
+		#Entering in data
+			browser.find_element(id: "Code").send_keys "aaab" #Cost center ID code
+				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]/input").click #Company drop down
+						browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div.form-container.col-sm-5 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "rha health services - bhs" #Enters a selection
+						browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div.form-container.col-sm-5 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[3]/div/div/div[1]/input").click #Region drop down
+						browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "region 1" #Enters a selection
+						browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+				
+
+sleep(2)
+
+
+				#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]").click #Status drop down
+						#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items").click
+						
+
+
+						#Selenium::WebDriver::Support::Select.new(driver.find_element(:xpath => "/html/body/div/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]")).select_by :text, 'Active'
+
+						browser.select_list(:xpath => '/html/body/div/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]').select 'Active'
+
+
+						#browser.select_list(:css => 'body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items.focus.dropdown-active.input-active').select 'Active'
+
+
+						#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items") 	
+						#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys :arrow_down #Selects the selection
+						#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys(Keys.ARROW_DOWN , 1)
+						#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys :return #Selects the selection
+
+
+
+sleep(6)
+
+
+
+
+
+
+
+
+				
+
+				#Address block
+
+					browser.find_element(id: "Address_Street1").send_keys "306 Tidal Rice Court" #Enters address line 1
+					browser.find_element(id: "Address_Street2").send_keys "1234 West Main Ave" #Enters address line 2
+						browser.find_element(id: "Address_City").send_keys "Charleston" #Enters city
+						browser.find_element(id: "Address_State").send_keys "SC" #Enters state
+						browser.find_element(id: "Address_ZipCode").click #Zipcode focus
+						browser.find_element(id: "Address_ZipCode").send_keys "123451234" #Enters 9-digit zip code
+
+							browser.find_element(id: "Email").send_keys "automated1@email.com"
+							browser.find_element(id: "Phone").click #Phone number focus
+							browser.find_element(id: "Phone").send_keys "9997778888" #Enters phone number
+							browser.find_element(id: "Fax").click #Fax number focus
+							browser.find_element(id: "Fax").send_keys "1112223333" #Enters fax number
+
+					browser.find_element(xpath: "//*[@id='form']/section[2]/div[2]/div/div/div/div[1]/input").click #Select Counties drop down
+						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "alamance" #Enters a selection
+						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+				
+				#Payer Details
+					#Effective From
+					#Effective To
+					#Payer Type
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div").click #Select Form Type drop down
+						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys "alamance" #Enters a selection
+						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys :return #Selects the selection
+
+
+		#Saves Payer
+			browser.find_element(xpath: "//*[@id='form']/div[2]/ul/li[3]/button").click	
+			#Uncomment for "Save and Add another" button click
+				#browser.find_element(xpath: "//*[@id='form'']/div[2]/ul/li[3]/button").click
+
+		#Address validation popup
+			browser.find_element(xpath: "//*[@id='address-selection-vue']/div[1]/div/div/div[3]/button[2]/span").click
+
+=begin
+
+	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));
+	#/WebDriverWait wait = new WebDriverWait(webDriver, timeoutInSeconds);
+	#wait.until(ExpectedConditions.visibilityOfElementLocated(By.class "selectize-control"));/
+	#browser.find_element(link_text: "Images").click
+	#browser.find_elements(tag_name: "img").size
+
+		#Logout
+			browser.find_element(id: "signout-icon").click
+
+=end
+
+browser.close
+
+
