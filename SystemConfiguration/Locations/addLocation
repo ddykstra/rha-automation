@@ -21,8 +21,8 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
 		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
 		browser.find_element(id: "cred_sign_in_button").click
-		browser.find_element(id: "cred_sign_in_button").send_keys :return
-		sleep(2)
+		sleep(1)
+		browser.find_element(id: "cred_sign_in_button").click
 
 	#Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
 		#Clicks System Config
@@ -36,7 +36,7 @@ require "selenium-webdriver"
 		#Entering in data
 			browser.find_element(id: "Name").send_keys "AddedByAutomationLocation1" #name
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]/input").click #Company drop down
-					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "ARP" #Enters a selection
+					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "Automation Company" #Enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys :return #Selects the selection
 				
 				#Address block

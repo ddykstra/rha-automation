@@ -21,7 +21,8 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
 		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
 		browser.find_element(id: "cred_sign_in_button").click
-		sleep(2)
+		sleep(1)
+		browser.find_element(id: "cred_sign_in_button").click
 
 	#Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
 		#Clicks System Config

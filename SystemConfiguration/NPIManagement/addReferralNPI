@@ -21,8 +21,8 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
 		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
 		browser.find_element(id: "cred_sign_in_button").click
-		browser.find_element(id: "cred_sign_in_button").send_keys :return
-		sleep(2)
+		sleep(1)
+		browser.find_element(id: "cred_sign_in_button").click
 
 	#Navigate to the System Configuration page, clicks NPI on left nav, and then click Add NPI button
 		#Clicks System Config
