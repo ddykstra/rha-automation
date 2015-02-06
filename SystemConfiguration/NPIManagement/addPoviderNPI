@@ -29,7 +29,7 @@ require "selenium-webdriver"
 			browser.find_element(link_text: "System Configuration").click
 		#Clicks NPI Management on left Nav
 			browser.find_element(link_text: "NPI Management").click
-		#Clicks Add Program
+		#Clicks Add NPI
 			browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/div/div[3]/a").click
 
 	#Fill in provider NPI number data to add and save.
@@ -74,13 +74,13 @@ require "selenium-webdriver"
 
 				#Address block
 
-					browser.find_element(id: "ProviderInputs_ProviderAddressStreet1").send_keys "306 Tidal Rice Court" #Enters address line 1
-					browser.find_element(id: "ProviderInputs_ProviderAddressStreet2").send_keys "1234 West Main Ave" #Enters address line 2
-						browser.find_element(id: "ProviderInputs_ProviderAddressCity").send_keys "Charleston" #Enters city
-						browser.find_element(id: "ProviderInputs_ProviderAddressState").click #State field
-							browser.find_element(id: "ProviderInputs_ProviderAddressState").send_keys "SC" #Enters state
-						browser.find_element(id: "ProviderInputs_ProviderAddressZipCode").click #Zipcode focus
-						browser.find_element(id: "ProviderInputs_ProviderAddressZipCode").send_keys "123451234" #Enters 9-digit zip code
+					browser.find_element(id: "ProviderInputs_ProviderAddress_Street1").send_keys "306 Tidal Rice Court" #Enters address line 1
+					browser.find_element(id: "ProviderInputs_ProviderAddress_Street2").send_keys "1234 West Main Ave" #Enters address line 2
+						browser.find_element(id: "ProviderInputs_ProviderAddress_City").send_keys "Charleston" #Enters city
+						browser.find_element(id: "ProviderInputs_ProviderAddress_State").click #State field
+							browser.find_element(id: "ProviderInputs_ProviderAddress_State").send_keys "SC" #Enters state
+						browser.find_element(id: "ProviderInputs_ProviderAddress_ZipCode").click #Zipcode focus
+						browser.find_element(id: "ProviderInputs_ProviderAddress_ZipCode").send_keys "123451234" #Enters 9-digit zip code
 		#Add License
 			browser.find_element(id: "VueLicense_Number").click #10 digit license number field
 			browser.find_element(id: "VueLicense_Number").send_keys "1000000000" #10 digit license number field
@@ -96,8 +96,8 @@ require "selenium-webdriver"
 								browser.find_element(xpath: "//*[@id='provider-section']/rha-licenses/section/div/div/div[2]/div/a").click
 
 		#Add Confirmed Payers
-			browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[1]/div[1]/div/div/div[1]/input").click #Confirmed payers type drop down
-				browser.find_element(css: "#provider-section > rha-payers > section > div > div > div:nth-child(2) > div.form-container.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Payerautomation Lastname" #enters a selection
+			browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[1]/div[1]/div/div/div[1]").click #Confirmed payers type drop down
+				browser.find_element(css: "#provider-section > rha-payers > section > div > div > div:nth-child(2) > div.form-container.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automationpayer Lastname" #enters a selection
 					browser.find_element(css: "#provider-section > rha-payers > section > div > div > div:nth-child(2) > div.form-container.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 				
 						browser.find_element(id: "VuePayer_EffectiveDates_From").click #Effective From date
@@ -108,7 +108,7 @@ require "selenium-webdriver"
 								browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[2]/div/a").click #Add Payer button
 				#Saves
 					browser.find_element(xpath: "//*[@id='npi-form']/div/ul/li[2]/button").click
-						browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
+						#browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
 
 =begin
 

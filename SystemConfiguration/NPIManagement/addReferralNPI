@@ -25,7 +25,7 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_sign_in_button").click
 
 	#Navigate to the System Configuration page, clicks NPI on left nav, and then click Add NPI button
-		#Clicks System Config
+				#Clicks System Config
 			browser.find_element(link_text: "System Configuration").click
 		#Clicks NPI Management on left Nav
 			browser.find_element(link_text: "NPI Management").click
@@ -61,13 +61,13 @@ require "selenium-webdriver"
 			browser.find_element(id: "ReferralInputs_Name").send_keys "Referralautomation Lastname"
 				
 				#Address block
-					browser.find_element(id: "ReferralInputs_AddressStreet1").send_keys "306 Tidal Rice Court" #Enters address line 1
-					browser.find_element(id: "ReferralInputs_AddressStreet2").send_keys "1234 West Main Ave" #Enters address line 2
-						browser.find_element(id: "ReferralInputs_AddressCity").send_keys "Charleston" #Enters city
-						browser.find_element(id: "ReferralInputs_AddressState").click #State field
-							browser.find_element(id: "ReferralInputs_AddressState").send_keys "SC" #Enters state
-						browser.find_element(id: "ReferralInputs_AddressZipCode").click #Zipcode focus
-						browser.find_element(id: "ReferralInputs_AddressZipCode").send_keys "123451234" #Enters 9-digit zip code
+					browser.find_element(id: "ReferralInputs_Address_Street1").send_keys "306 Tidal Rice Court" #Enters address line 1
+					browser.find_element(id: "ReferralInputs_Address_Street2").send_keys "1234 West Main Ave" #Enters address line 2
+						browser.find_element(id: "ReferralInputs_Address_City").send_keys "Charleston" #Enters city
+						browser.find_element(id: "ReferralInputs_Address_State").click #State field
+							browser.find_element(id: "ReferralInputs_Address_State").send_keys "SC" #Enters state
+						browser.find_element(id: "ReferralInputs_Address_ZipCode").click #Zipcode focus
+						browser.find_element(id: "ReferralInputs_Address_ZipCode").send_keys "123451234" #Enters 9-digit zip code
 
 							browser.find_element(id: "ReferralInputs_PhoneNumber").click #Phone number focus
 								browser.find_element(id: "ReferralInputs_PhoneNumber").send_keys "9997778888" #Enters phone number
@@ -76,8 +76,7 @@ require "selenium-webdriver"
 
 				#Saves
 					browser.find_element(xpath: "//*[@id='npi-form']/div/ul/li[2]/button").click
-						browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
-
+						#browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
 
 =begin
 

@@ -43,9 +43,9 @@ require "selenium-webdriver"
 				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
 			browser.find_element(id: "ServiceModel_HCPCS").send_keys "HCPCSauto" #HCPCS field
 			browser.find_element(id: "ServiceModel_Modifier").send_keys "ModifierAuto" #Modifier field
-			browser.find_element(id: "ServiceModel_EffectiveFrom").click #Effective from calendar
+			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
 				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
-			browser.find_element(id: "ServiceModel_EffectiveTo").click
+			browser.find_element(id: "ServiceModel_Effective_To").click
 				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
 			
 			#Uncomment below line if changing BILL TYPE to "Inpatient"; otherwise, it will default to "Outpatient"
@@ -95,14 +95,15 @@ require "selenium-webdriver"
 					browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[1]/div/div/div[3]/label/span").click #PerDiem option
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[1]/div/div/div[1]/label/span").click #Clicks "Time" again
 
-	#Billing Frequency Limits
-			browser.find_element(id: "min-units").click #Min units field focus 
-				browser.find_element(id: "min-units").send_keys "25" #Enters Min units
-			browser.find_element(id: "max-units").click #Max units field focus
-				browser.find_element(id: "max-units").send_keys "95" #Enters Max units
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[2]/div[3]/div/div/div[1]").click #Per drop down
-				#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys "14" #enters a selection
-					#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys :return #selects the selection
+	#Billing Frequency Limits - THIS WAS REMOVED FROM THE ADD SERVICE SCREEN
+			#browser.find_element(id: "min-units").click #Min units field focus 
+				#browser.find_element(id: "min-units").send_keys "25" #Enters Min units
+			#browser.find_element(id: "max-units").click #Max units field focus
+				#browser.find_element(id: "max-units").send_keys "95" #Enters Max units
+			browser.find_element(id: "billing-limits").click #Puts focus a field
+				browser.find_element(id: "billing-limits").send_keys "14" #enters a selection
+					browser.find_element(id: "billing-limits").send_keys :return #selects the selection
+			#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[2]/div[3]/div/div/div[1]").click #Per drop down
 			browser.find_element(id: "add-frequency").click #Clicks "Apply Frequency Limits button"
 			
 	#Define Measure
@@ -149,8 +150,8 @@ require "selenium-webdriver"
 									browser.find_element(xpath: "//*[@id='services_vue']/div[2]/div[2]/div/div/div/div[2]/label/span").click #NB note type
 									browser.find_element(xpath: "//*[@id='services_vue']/div[2]/div[2]/div/div/div/div[3]/label/span").click #EM note type
 				#Encounter Type (By default, set to "FTF")
-					browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[1]/div[2]/div[2]/label/span").click
-						browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[1]/div[2]/div[1]/label/span").click
+					#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[1]/div[2]/div[2]/label/span").click
+						#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[1]/div[2]/div[1]/label/span").click
 
 	#Rounding Rules
 		#Service Type
@@ -159,12 +160,6 @@ require "selenium-webdriver"
 		#Always Round
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[1]/label/span").click #Up option
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[2]/label/span").click #Down option
-
-			sleep (5)
-
-
-		#Clicks Save
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/div/ul/li[2]/button").click	
 
 =begin
 

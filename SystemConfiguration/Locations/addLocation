@@ -30,7 +30,7 @@ require "selenium-webdriver"
 		#Clicks Locations on left Nav
 			browser.find_element(link_text: "Locations").click
 		#Clicks Add Location
-			browser.find_element(xpath: "/html/body/div/div[2]/div/div[2]/div/div[3]/a").click
+			browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/div/div[3]/a").click
 
 	#Fill in Location data to add and save.
 		#Entering in data
@@ -65,8 +65,8 @@ require "selenium-webdriver"
 		#Saves Location
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/div/ul/li[2]/button").click	
 
-		#Address validation popup
-			browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click
+		#Address validation popup - REMOVED / CHANGED THIS
+			#browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click
 
 =begin
 
