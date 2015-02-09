@@ -38,6 +38,20 @@ require "selenium-webdriver"
 				#Saves
 					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click
 
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Service Categories' link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Service Categories").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Service"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click
+
 #GROUPS - Navigate to the System Configuration page, clicks Group on left nav, and then click Add Group button
 		browser.find_element(xpath: "/html/body/header/ul[1]/li[5]/a").click
 		browser.find_element(xpath: "/html/body/div[1]/div[1]/div/ul/li[2]/a").click
@@ -65,11 +79,13 @@ require "selenium-webdriver"
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]").click #service category drop down
 				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(1) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "eye" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(1) > div.form-container.col-sm-4 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[1]/div[2]/div/div/div[1]").send_keys :tab
-			browser.find_element(id: "ServiceModel_UsualCharge").click #usual charge field
+		
+			#Need to double click for field focus on this field.
+			browser.find_element(id: "ServiceModel_UsualCharge").click #Field focus usual charge amount
+			browser.find_element(id: "ServiceModel_UsualCharge").click #Field focus usual charge amount
 				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
 			browser.find_element(id: "ServiceModel_HCPCS").send_keys "HCPCSauto" #HCPCS field
-			browser.find_element(id: "ServiceModel_Modifier").send_keys "ModifierAuto" #Modifier field
+			browser.find_element(id: "ServiceModel_Modifier").send_keys "Modauto" #Modifier field
 			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
 				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 			browser.find_element(id: "ServiceModel_Effective_To").click
@@ -127,7 +143,10 @@ require "selenium-webdriver"
 				#browser.find_element(id: "min-units").send_keys "25" #Enters Min units
 			#browser.find_element(id: "max-units").click #Max units field focus
 				#browser.find_element(id: "max-units").send_keys "95" #Enters Max units
-			browser.find_element(id: "billing-limits").click #Puts focus a field
+			#browser.find_element(id: "billing-limits").click #Puts focus a field
+			
+			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
+			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
 				browser.find_element(id: "billing-limits").send_keys "14" #enters a selection
 					browser.find_element(id: "billing-limits").send_keys :return #selects the selection
 			#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[2]/div[3]/div/div/div[1]").click #Per drop down
@@ -142,7 +161,7 @@ require "selenium-webdriver"
 				browser.find_element(id: "ServiceModel_DurationFloor").send_keys "15" #Enters duraction floor units
 			browser.find_element(id: "ServiceModel_DurationCeiling").click #Duration Ceiling (minutes) field focus
 				browser.find_element(id: "ServiceModel_DurationCeiling").send_keys "25" #Enters duration ceiling units
-
+	
 	#Request Start and End Time (By default, switch is NO - Comment the below line out if you want this to be true)
 			browser.find_element(xpath: "//*[@id='model_time']/div/div/label[2]/span").click #Switches to YES
 
@@ -162,7 +181,7 @@ require "selenium-webdriver"
 				#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys "14" #enters a selection
 					#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys :return #selects the selection
 			browser.find_element(id: "add-limit").click #Clicks "Apply Frequency Limits button"
-
+	
 	#Clinical Rules (By default, all switches are set to NO)
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[1]/div[1]/div/label[2]/span").click #QA Review Required; switches to YES
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[4]/div[2]/div[1]/div/label[2]/span").click #Entry for Multiple Staff; switches to YES
@@ -187,6 +206,9 @@ require "selenium-webdriver"
 		#Always Round
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[1]/label/span").click #Up option
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[2]/label/span").click #Down option
+
+			#Saves the Service
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
 
 #PROGRAMS - Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
 		#Clicks System Config
@@ -564,14 +586,21 @@ require "selenium-webdriver"
 									browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								browser.find_element(id: "EffectiveDates_To").click #Effective To date
 									browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
-			#Payer
-				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Payer drop down
-					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Payerautomation Lastname" #enters a selection
-						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 			#Company
-				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Company drop down
-					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection
-						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Company drop down
+					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection
+						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			#Payer
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Payer drop down
+					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-3 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automationpayer Lastname1" #enters a selection
+						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-3 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+
+			#MCO Funded option buttons
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/rha-mco-funding/div[1]/div/div[2]/label/span").click
+				#Type of MCO funding
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/rha-mco-funding/div[2]/div/div/div[1]/label/span").click
+
 			#Rate Group
 				browser.find_element(id: "RateGroupName").send_keys "Automated Rate Group" #Enters rate group name
 					browser.find_element(id: "add-rateGroup").click 

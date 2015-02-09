@@ -45,14 +45,21 @@ require "selenium-webdriver"
 									browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								browser.find_element(id: "EffectiveDates_To").click #Effective To date
 									browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
-			#Payer
-				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Payer drop down
-					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Payerautomation Lastname" #enters a selection
-						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 			#Company
-				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Company drop down
-					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection
-						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Company drop down
+					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection
+						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			#Payer
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Payer drop down
+					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-3 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automationpayer Lastname1" #enters a selection
+						browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-3 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+
+			#MCO Funded option buttons
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/rha-mco-funding/div[1]/div/div[2]/label/span").click
+				#Type of MCO funding
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/rha-mco-funding/div[2]/div/div/div[1]/label/span").click
+
 			#Rate Group
 				browser.find_element(id: "RateGroupName").send_keys "Automated Rate Group" #Enters rate group name
 					browser.find_element(id: "add-rateGroup").click 
