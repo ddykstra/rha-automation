@@ -24,33 +24,19 @@ require "selenium-webdriver"
 		sleep(1)
 		browser.find_element(id: "cred_sign_in_button").click
 
-	#Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
+	#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Relationships link
 		#Clicks System Config
 			browser.find_element(link_text: "System Configuration").click
-		#Clicks Programs on left Nav
-			browser.find_element(link_text: "Programs").click
-		#Clicks Add Program
-			browser.find_element(xpath: "/html/body/div/div[2]/div/div[2]/div/div[3]/a").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Relationships").click
 
-	#Fill in Program data to add and save.
-		#Entering in data
-			browser.find_element(id: "Name").send_keys "AddedByAutomationProgram1" #name
-			browser.find_element(id: "Code").send_keys "ZZZ" #Code
-				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[2]/div[2]/div/div/div[1]/div").click #Status drop down
-					#NEED TO FIX -----> browser.find_element(css: "/html/body/div/div[2]/div/form/section[1]/div[2]/div[2]/div/div/div[1]/div").click #Selects "Inactive"
-					
-					browser.find_element(id: "EffectiveTo").click #Effective To date
-					browser.find_element(id: "EffectiveTo").send_keys "03/30/2020"
-					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
-						browser.find_element(id: "EffectiveFrom").click #Effective From date
-						browser.find_element(id: "EffectiveFrom").send_keys "01/01/2015"
-						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Relationship1"
 
-		#Program Services
-			browser.find_element(link_text: "Select All").click
-
-		#Saves Program
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/div/ul/li[2]/button").click	
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
 
 =begin
 

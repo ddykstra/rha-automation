@@ -52,6 +52,62 @@ require "selenium-webdriver"
 				#Saves
 					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click
 
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Ethnic Origins link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Ethnic Origins").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Ethnic Origin1"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
+
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Languages link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Languages").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Language1"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
+
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Race link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Races").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Race1"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
+
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Relationships link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
+			browser.find_element(link_text: "Relationships").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Relationship1"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
+
 #GROUPS - Navigate to the System Configuration page, clicks Group on left nav, and then click Add Group button
 		browser.find_element(xpath: "/html/body/header/ul[1]/li[5]/a").click
 		browser.find_element(xpath: "/html/body/div[1]/div[1]/div/ul/li[2]/a").click
@@ -86,10 +142,12 @@ require "selenium-webdriver"
 				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
 			browser.find_element(id: "ServiceModel_HCPCS").send_keys "HCPCSauto" #HCPCS field
 			browser.find_element(id: "ServiceModel_Modifier").send_keys "Modauto" #Modifier field
-			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
-				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 			browser.find_element(id: "ServiceModel_Effective_To").click
-				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+				browser.find_element(id: "ServiceModel_Effective_To").send_keys "12/30/2020"
+				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
+				browser.find_element(id: "ServiceModel_Effective_From").send_keys "01/01/2015"
+				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 			
 			#Uncomment below line if changing BILL TYPE to "Inpatient"; otherwise, it will default to "Outpatient"
 				#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[3]/div[1]/div/div[1]/label/span").click
@@ -224,10 +282,14 @@ require "selenium-webdriver"
 			browser.find_element(id: "Code").send_keys "ZZZ" #Code
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[2]/div[2]/div/div/div[1]/div").click #Status drop down
 					#NEED TO FIX -----> browser.find_element(css: "/html/body/div/div[2]/div/form/section[1]/div[2]/div[2]/div/div/div[1]/div").click #Selects "Inactive"
+						
+					browser.find_element(id: "EffectiveTo").click #Effective To date
+					browser.find_element(id: "EffectiveTo").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "EffectiveFrom").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "EffectiveTo").click #Effective To date
-							browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "EffectiveFrom").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 		#Program Services
 			browser.find_element(link_text: "Select All").click
@@ -361,10 +423,12 @@ require "selenium-webdriver"
 							#browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys :arrow_down #status drop down
 								#browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys :return
 
-							browser.find_element(id: "Effective_From").click #Effective from calendar
-								browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 							browser.find_element(id: "Effective_To").click
-								browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+								browser.find_element(id: "Effective_To").send_keys "03/30/2020"
+								#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+							browser.find_element(id: "Effective_From").click #Effective from calendar
+								browser.find_element(id: "Effective_From").send_keys "01/01/2015"
+								#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 
 							browser.find_element(id: "Director").send_keys "Automationdirector"
 
@@ -398,18 +462,24 @@ require "selenium-webdriver"
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Provider" #enters a selection
 					browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 						
+					browser.find_element(id: "EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "EffectiveDates_To").click #Effective To date
-							browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 		#Add Taxonomies
 			browser.find_element(id: "VueTaxonomy_Number").click #9 digit + letter NPI number
 			browser.find_element(id: "VueTaxonomy_Number").send_keys "1000000000a" #Enter NPI number
+						
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").send_keys "03/30/2020"	
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								
 								browser.find_element(xpath: "//*[@id='npi-form']/section[1]/section/rha-taxonomies/section/div/div/div[2]/div/a").click  #Apply Taxonomy button
 
@@ -423,10 +493,13 @@ require "selenium-webdriver"
 					browser.find_element(id: "ProviderInputs_TaxId").click #Tax ID field
 						browser.find_element(id: "ProviderInputs_TaxId").send_keys "100000000" #Enters 9 digit Tax ID number
 						
+					browser.find_element(id: "ProviderInputs_EmploymentDates_To").click #Effective To date
+					browser.find_element(id: "ProviderInputs_EmploymentDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "ProviderInputs_EmploymentDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "ProviderInputs_EmploymentDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "ProviderInputs_EmploymentDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 				#Address block
 
@@ -444,10 +517,13 @@ require "selenium-webdriver"
 				browser.find_element(css: "#provider-section > rha-licenses > section > div > div > div:nth-child(2) > div.form-container.col-lg-4.col-md-5.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "Family nurse practitioner" #enters a selection
 					browser.find_element(css: "#provider-section > rha-licenses > section > div > div > div:nth-child(2) > div.form-container.col-lg-4.col-md-5.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
 						
+					browser.find_element(id: "VueLicense_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VueLicense_EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VueLicense_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VueLicense_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VueLicense_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 								browser.find_element(xpath: "//*[@id='provider-section']/rha-licenses/section/div/div/div[2]/div/a").click
 
@@ -455,11 +531,14 @@ require "selenium-webdriver"
 			browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[1]/div[1]/div/div/div[1]").click #Confirmed payers type drop down
 				browser.find_element(css: "#provider-section > rha-payers > section > div > div > div:nth-child(2) > div.form-container.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automationpayer Lastname" #enters a selection
 					browser.find_element(css: "#provider-section > rha-payers > section > div > div > div:nth-child(2) > div.form-container.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
-				
+											
+					browser.find_element(id: "VuePayer_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VuePayer_EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VuePayer_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VuePayer_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VuePayer_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 								browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[2]/div/a").click #Add Payer button
 				#Saves
@@ -485,18 +564,25 @@ require "selenium-webdriver"
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Referral" #enters a selection
 					browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 						
+					browser.find_element(id: "EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "EffectiveDates_To").click #Effective To date
-							browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 		#Add Taxonomies
 			browser.find_element(id: "VueTaxonomy_Number").click #9 digit + letter NPI number
 			browser.find_element(id: "VueTaxonomy_Number").send_keys "2000000000a" #Enter NPI number
+						
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 								
 								browser.find_element(xpath: "//*[@id='npi-form']/section[1]/section/rha-taxonomies/section/div/div/div[2]/div/a").click  #Apply Taxonomy button
 
@@ -540,18 +626,25 @@ require "selenium-webdriver"
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Facility" #enters a selection
 					browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 						
+					browser.find_element(id: "EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "EffectiveDates_To").click #Effective To date
-							browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 
 		#Add Taxonomies
 			browser.find_element(id: "VueTaxonomy_Number").click #9 digit + letter NPI number
 			browser.find_element(id: "VueTaxonomy_Number").send_keys "2000000000a" #Enter NPI number
+						
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 								
 								browser.find_element(xpath: "//*[@id='npi-form']/section[1]/section/rha-taxonomies/section/div/div/div[2]/div/a").click  #Apply Taxonomy button
 
@@ -583,9 +676,11 @@ require "selenium-webdriver"
 						browser.find_element(id: "StateAnnualLimit").click #State annual limit
 							browser.find_element(id: "StateAnnualLimit").send_keys "5000" #Enters State annual limit
 								browser.find_element(id: "EffectiveDates_From").click #Effective From date
-									browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+									browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+									#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								browser.find_element(id: "EffectiveDates_To").click #Effective To date
-									browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+									browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
+									#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 			#Company
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Company drop down
 					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection

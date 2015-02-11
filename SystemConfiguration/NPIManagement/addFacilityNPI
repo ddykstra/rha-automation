@@ -40,19 +40,24 @@ require "selenium-webdriver"
 			browser.find_element(xpath: "//*[@id='npi-form']/section/section/div/div[2]/div/div/div[1]/input").click #NPI type drop down
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Facility" #enters a selection
 					browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
-						
+				
+				#browser.find_element(id: "PersonalInfo_Birthdate").send_keys "03/30/1990"		
+					browser.find_element(id: "EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "EffectiveDates_To").click #Effective To date
-							browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 
 		#Add Taxonomies
 			browser.find_element(id: "VueTaxonomy_Number").click #9 digit + letter NPI number
 			browser.find_element(id: "VueTaxonomy_Number").send_keys "2000000000a" #Enter NPI number
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
+					browser.find_element(id: "VueTaxonomy_EffectiveDates_To").send_keys "03/30/2020"
+					#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").click #Effective From date
-						browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-							browser.find_element(id: "VueTaxonomy_EffectiveDates_To").click #Effective To date
-								browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").send_keys "01/01/2015"
+						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								
 								browser.find_element(xpath: "//*[@id='npi-form']/section[1]/section/rha-taxonomies/section/div/div/div[2]/div/a").click  #Apply Taxonomy button
 

@@ -69,6 +69,8 @@ require "selenium-webdriver"
 							#browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys :arrow_down #status drop down
 								#browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys :return
 
+						#browser.find_element(id: "PersonalInfo_Birthdate").send_keys "03/30/1990"
+
 							browser.find_element(id: "Effective_From").click #Effective from calendar
 								browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
 							browser.find_element(id: "Effective_To").click

@@ -45,10 +45,14 @@ require "selenium-webdriver"
 				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
 			browser.find_element(id: "ServiceModel_HCPCS").send_keys "HCPCSauto" #HCPCS field
 			browser.find_element(id: "ServiceModel_Modifier").send_keys "Modauto" #Modifier field
-			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
-				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
+			
 			browser.find_element(id: "ServiceModel_Effective_To").click
-				browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+				browser.find_element(id: "ServiceModel_Effective_To").send_keys "12/30/2020"
+				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
+			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
+				browser.find_element(id: "ServiceModel_Effective_From").send_keys "01/01/2015"
+				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
+
 			
 			#Uncomment below line if changing BILL TYPE to "Inpatient"; otherwise, it will default to "Outpatient"
 				#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[3]/div[1]/div/div[1]/label/span").click
@@ -165,6 +169,9 @@ require "selenium-webdriver"
 		#Always Round
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[1]/label/span").click #Up option
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[2]/label/span").click #Down option
+
+
+sleep(10)
 
 			#Saves the Service
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
