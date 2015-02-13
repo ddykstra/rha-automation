@@ -39,7 +39,7 @@ require "selenium-webdriver"
 					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
 
 				#Authorization type
-					browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[1]/label/span").click #managed
+					#browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[1]/label/span").click #managed
 						browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[2]/label/span").click
 
 
