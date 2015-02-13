@@ -27,6 +27,7 @@ require "selenium-webdriver"
 #SYSTEM CONFIGURATION
 
 #UDO LIST - Clinical Goals - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Clinical Goals link
+
 		#Clicks System Config
 			browser.find_element(link_text: "System Configuration").click
 		#Clicks Services on left Nav
@@ -742,6 +743,347 @@ require "selenium-webdriver"
 
 					#Saves Contract
 						browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[2]/ul/li[3]/button").click
+
+#CLIENTS AREA
+
+#Navigate to the Client's page - Adds Client
+		#Clicks Clients
+			browser.find_element(link_text: "Clients").click
+		#Clicks Add Client
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[1]/a").click
+
+	#Fill in Personal information data.
+			browser.find_element(id: "PersonalInfo_NameFirst").send_keys "Automationfirstname1" #First name
+			browser.find_element(id: "PersonalInfo_NameMiddle").send_keys "Automationmiddlename1" #Middle name
+			browser.find_element(id: "PersonalInfo_NameLast").send_keys "Automationlastname1" #Last name
+			browser.find_element(id: "PersonalInfo_NameSuffix").send_keys "Auto" #Suffix
+			browser.find_element(id: "PersonalInfo_PreviousName").send_keys "Automationpreviousname Lastname"
+			browser.find_element(id: "PersonalInfo_NamePreferred").send_keys "Automationpreferredname Lastname"
+			browser.find_element(id: "PersonalInfo_SSN").click
+				browser.find_element(id: "PersonalInfo_SSN").click
+					browser.find_element(id: "PersonalInfo_SSN").send_keys "111111111"
+			browser.find_element(id: "PersonalInfo_Birthdate").click
+				browser.find_element(id: "PersonalInfo_Birthdate").send_keys "03/30/1990"
+			browser.find_element(id: "PersonalInfo_EclipseId").send_keys "1"
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "Female" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Race1 drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Race1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[3]/div/div/div[1]/input").click #Race2 drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation1 Race1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #Ethnic Origin drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Ethnic Origin1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[4]/div[2]/div/div/div[1]/input").click #County of Origin drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Alamance" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Primary Language drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").click #Secondary Language drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").click #Third Language drop down
+				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
+					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+
+					browser.find_element(id: "PersonalInfo_EthnicInfoNotes").send_keys "This client info was added by automaton."
+
+	#Contact Information
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[1]/div/div/label[2]/span").click #Is Homeless switch
+				browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[1]/div/div/label[2]/span").click #Sets "Is Homeless" back to NO
+
+		#Address block
+					browser.find_element(id: "ContactInfo_Address_Street1").send_keys "306 Tidal Rice Court" #Enters address line 1
+					browser.find_element(id: "ContactInfo_Address_Street2").send_keys "1234 West Main Ave" #Enters address line 2
+						browser.find_element(id: "ContactInfo_Address_City").send_keys "Charleston" #Enters city
+						browser.find_element(id: "ContactInfo_Address_State").send_keys "SC" #Enters state
+						browser.find_element(id: "ContactInfo_Address_ZipCode").click #Zipcode focus
+						browser.find_element(id: "ContactInfo_Address_ZipCode").send_keys "123451234" #Enters 9-digit zip code
+
+						browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[3]/div[4]/div/div/div[1]/input").click #Select County of residence drop down
+							browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "alamance" #Enters a selection
+								browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+						browser.find_element(id: "ContactInfo_CellPhone").click #Cell number focus
+							browser.find_element(id: "ContactInfo_CellPhone").send_keys "9997778888" #Enters Cell number
+						browser.find_element(id: "ContactInfo_HomePhone").click #Home number focus
+							browser.find_element(id: "ContactInfo_HomePhone").send_keys "1112223333" #Enters Home number
+						browser.find_element(id: "ContactInfo_WorkPhone").click #Work number focus
+							browser.find_element(id: "ContactInfo_WorkPhone").send_keys "4445556677" #Enters Work number	
+						browser.find_element(id: "ContactInfo_EmailAddress").send_keys "automated1@email.com" #Email address
+
+						browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[5]/div[2]/div/div/div[1]/input").click #Select Preferred Communication drop down
+							browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Cell" #Enters a selection
+								browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+						
+						browser.find_element(id: "ContactInfo_PrimaryShelter").send_keys "Home" #Primary shelter
+							browser.find_element(id: "ContactInfo_SecondaryShelter").send_keys "Gun range" #Secondary shelter
+
+						browser.find_element(id: "ContactInfo_ContactInfoComments").send_keys "This contact info was added by automation."
+							
+		#Emergency Contact Information
+			browser.find_element(id: "EmergencyContact_NameFirst").send_keys "Autoemergencyname1" #First name
+			browser.find_element(id: "EmergencyContact_NameMiddle").send_keys "Autoemergencymiddlename1" #Middle name
+			browser.find_element(id: "EmergencyContact_NameLast").send_keys "Autoemergencylastname1" #Last name
+			browser.find_element(id: "EmergencyContact_NameSuffix").send_keys "Auto" #Suffix
+
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").click #Relationship drop down
+				browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys "Automation Relationship1" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+		
+			browser.find_element(id: "EmergencyContact_EmailAddress").send_keys "automatedemergency@email.com" #Email address for emergency contact
+			browser.find_element(id: "EmergencyContact_HomePhone").click #Home number focus
+				browser.find_element(id: "EmergencyContact_HomePhone").send_keys "1111111111" #Enters Emergency Contact Home number
+			browser.find_element(id: "EmergencyContact_CellPhone").click #Work number focus
+				browser.find_element(id: "EmergencyContact_CellPhone").send_keys "2222222222" #Enters Emergency Contact Cell number	
+						
+		#Saves the Client
+			browser.find_element(xpath: "/html/body/div[1]/div/div/form/div/ul/li[2]/button").click
+
+		#Address validation popup 
+			browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click
+
+#Navigate to the Add Referral page
+
+				#Clicks Referrals on the left nav
+					browser.find_element(link_text: "Referrals").click
+
+				#Clicks Add Referral
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
+
+			browser.find_element(id: "Date").click
+				browser.find_element(id: "Date").send_keys "01/10/2015"
+
+			#Referral Type
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys "Urgent" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Referral Source
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys "Community / Agency" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
+			
+			#Reasons for Referral
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys "CCA" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys :return #selects the selection
+			
+			#Enters a Comment
+				browser.find_element(id: "Comments").send_keys "This referral was added through automation"
+			
+			#Referring Provider Name
+				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+				#Saves Referral
+					browser.find_element(xpath: "//*[@id='referral-form']/div[3]/ul/li[2]/button").click
+
+#Navigate to the Assignments' Page
+
+				#Clicks Assignments on the left nav
+					browser.find_element(link_text: "Assignments").click
+
+				#Clicks Add Assignment
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
+
+			#Associated Referral
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[1]/div/div/div[1]/input").click #Associated Referral drop down
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[1]/div/div/div[1]/input").send_keys "Referralautomation" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Location
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[2]/div/div/div[1]/input").click #Location drop down
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[2]/div/div/div[1]/input").send_keys "AddedByAutomationLocation1" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Program
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[2]/div[1]/div/div/div[1]/input").click #Location drop down
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys "AddedByAutomationProgram1" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[1]/section[1]/div[2]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Admit Time
+				browser.find_element(id: "AdmitTime").click
+					browser.find_element(id: "AdmitTime").send_keys "12:00pm"
+
+			#Admit Date
+				browser.find_element(id: "AdmitDate").click
+					browser.find_element(id: "AdmitDate").send_keys "01/10/2015"
+
+			#Staff Type
+				browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").click #Location drop down
+				browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").send_keys "Admin" #enters a selection
+					browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Staff Member
+				browser.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").click #Location drop down
+				browser.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").send_keys "Admin" #enters a selection
+					browser.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Staff Assignment Date
+				browser.find_element(id: "StaffAssignmentDate").click
+					browser.find_element(id: "StaffAssignmentDate").send_keys "01/10/2015"
+					browser.find_element(id: "StaffAssignmentDate").send_keys "01/10/2015"
+
+				#Saves Assignment
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div[2]/ul/li[2]/button").click
+
+#Navigate to the Payers' page
+
+				#Clicks Payers on the left nav
+					browser.find_element(link_text: "Payers").click
+
+				#Clicks Add Payers
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a/i").click
+
+			#Payer Name
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").click #Payer drop down
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").send_keys "Automationpayer Lastname" #enters a selection
+					browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Policy Number
+				browser.find_element(id: "PolicyNumber").send_keys "0000001"
+
+			#Priority
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[1]/label/span").click #Primary
+					browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[2]/label/span").click #Secondary					 
+						browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[3]/label/span").click #Tertiary
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[1]/label/span").click
+
+			#Relationship to Insured
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").click #Relationship to insured drop down
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").send_keys "Self" #enters a selection
+					browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Termination Date
+				browser.find_element(id: "TerminationDate").click
+					browser.find_element(id: "TerminationDate").send_keys "12/25/2015"
+
+			#Effective Date
+				browser.find_element(id: "EffectiveFrom").click
+					browser.find_element(id: "EffectiveFrom").send_keys "02/11/2015"
+
+			#MCO Funded
+				#browser.find_element(xpath: "//*[@id="insurance-form"]/div[3]/rha-mco-funding/div[1]/div/div[1]/label/span").click #Sets it to NO
+				browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[1]/div/div[2]/label/span").click #Sets it to YES
+
+					#If MCO Funded = YES
+						browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[2]/div[1]/div/div[1]/label/span").click #Type of MCO Funding = Medicaid
+						#browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[2]/div[1]/div/div[1]/label/span").click #Type of MCO Funding = State
+
+						#If MCO = YES
+							browser.find_element(id: "McoFunding_MedicaidNumber").send_keys "0000001"
+
+					#Saves Payer
+						browser.find_element(xpath: "//*[@id='insurance-form']/div[4]/ul/li[2]/button").click
+
+#Navigate to Client's Authorization page
+
+				#Clicks Authorizations on the left nav
+					browser.find_element(link_text: "Authorizations").click
+
+				#Clicks Add Authorizations
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
+
+				#Authorization type
+					browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[1]/label/span").click #managed
+						browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[2]/label/span").click
+
+
+			#Insurance
+				browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").click #Insurance drop down
+				browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys "Automationpayer Lastname" #enters a selection
+					browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+			#Effective To
+				browser.find_element(id: "Effective_To").click
+					browser.find_element(id: "Effective_To").send_keys "12/25/2015"
+
+			#Effective From
+				browser.find_element(id: "Effective_From").click
+					browser.find_element(id: "Effective_From").send_keys "02/13/2015"
+
+			#Units Authorized
+				browser.find_element(id: "UnmanagedAuthorizationInputs_UnitsAuthorized").send_keys "10"
+
+			#Service Bundled
+				#browser.find_element(xpath: "//*[@id='request-info']/div[2]/div/div/div[1]/label/span").click #Sets to NO
+					browser.find_element(xpath: "//*[@id='request-info']/div[2]/div/div/div[2]/label/span").click #Sets to YES
+
+			#Select Service Categories - NOTE: If Service Bundle is set to NO, comment this line out
+				browser.find_element(xpath: "//*[@id='1693-selectable']/span").click
+
+			#Adds Limits
+					browser.find_element(id: "VueLimit_Value").click #Field focus usual charge amount
+						browser.find_element(id: "VueLimit_Value").click #Field focus usual charge amount
+						browser.find_element(id: "VueLimit_Value").send_keys "500" #enters usual charge amount
+					browser.find_element(xpath: "//*[@id='request-info']/div[4]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").click #Per drop down
+						browser.find_element(xpath: "//*[@id='request-info']/div[4]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys "Day" #enters a selection
+							browser.find_element(xpath: "//*[@id='request-info']/div[4]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+					browser.find_element(xpath: "//*[@id='request-info']/div[4]/rha-limits/div/div[2]/div").click
+
+				#Saves Authorization
+					browser.find_element(xpath: "//*[@id='request-info']/div[3]/rha-limits/div/div[2]/div/a").click
+
+
+#Navigate to the Clients' page, clicks Clinical Chart on left nav, and then click Goals
+
+#Clinical Charts
+
+#Goals
+		#Clicks Clients
+			browser.find_element(link_text: "Clients").click
+		#Searches and accesses a specific client
+			browser.find_element(id: "search").send_keys "Automation"
+				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
+					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+
+				#Clicks Clinical Chart on the left nav
+					browser.find_element(link_text: "Clinical Chart").click
+sleep(1)
+					#Clicks Goals in form builder
+						browser.find_element(link_text: "Goals").click
+
+				#Clicks Add Goals
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div/a").click
+			
+				#Goal UDO selection
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]").click #Insurance drop down
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]/input").send_keys "Automation Goals" #enters a selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+
+				#Other Goal, please specify - Uncomment if goal type is Other
+					#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[2]/div/input").send_keys "Other Goal Type"
+
+				#Goal Review Date
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[2]/div/div/input").click
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[2]/div/div/input").send_keys "02/13/2015"
+
+				#Target Date
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[1]/div/div/input").click
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[1]/div/div/input").send_keys "12/13/2015"
+
+				#Status Code selection
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]").click #Insurance drop down
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]/input").send_keys "Revised" #enters a selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
+
+				#Goal progeress open text area
+					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[3]/div/div/textarea").send_keys "This goals needs more work"
+
+					#Saves Goal
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button").click
 
 =begin
 

@@ -72,8 +72,8 @@ require "selenium-webdriver"
 			#Uncomment for "Save and Add another" button click
 				#browser.find_element(xpath: "//*[@id='form'']/div[2]/ul/li[3]/button").click
 
-		#Address validation popup - REMOVED / CHANGED THIS
-			#browser.find_element(xpath: "//*[@id='address-selection-vue']/div[1]/div/div/div[3]/button[2]/span").click
+		#Address validation popup 
+			browser.find_element(xpath: "//*[@id='address-selection-vue']/div[1]/div/div/div[3]/button[2]/span").click
 
 =begin
 

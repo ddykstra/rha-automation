@@ -114,7 +114,7 @@ require "selenium-webdriver"
 								browser.find_element(xpath: "//*[@id='provider-section']/rha-payers/section/div/div/div[2]/div/a").click #Add Payer button
 				#Saves
 					browser.find_element(xpath: "//*[@id='npi-form']/div/ul/li[2]/button").click
-						#browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
+						browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
 
 =begin
 

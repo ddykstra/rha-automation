@@ -44,12 +44,13 @@ require "selenium-webdriver"
 
 							#browser.find_element(id: "PersonalInfo_Birthdate").send_keys "03/30/1990"
 
-								browser.find_element(id: "EffectiveDates_From").click #Effective From date
-									browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
-									#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
 								browser.find_element(id: "EffectiveDates_To").click #Effective To date
 									browser.find_element(id: "EffectiveDates_To").send_keys "03/30/2020"
 									#browser.find_element(xpath: "//html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click
+								browser.find_element(id: "EffectiveDates_From").click #Effective From date
+									browser.find_element(id: "EffectiveDates_From").send_keys "01/01/2015"
+									#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
+
 			#Company
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Company drop down
 					browser.find_element(css: "body > div.page-container > div.page-content > div > form > section:nth-child(2) > div:nth-child(3) > div.form-container.col-sm-6.col-md-4 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Company" #enters a selection

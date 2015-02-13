@@ -24,8 +24,8 @@ require "selenium-webdriver"
 		sleep(1)
 		browser.find_element(id: "cred_sign_in_button").click
 
-	#Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
-		#Clicks System Config
+	#Navigate to the Client's page
+		#Clicks Clients
 			browser.find_element(link_text: "Clients").click
 		#Clicks Add Client
 			browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[1]/a").click
@@ -116,8 +116,8 @@ require "selenium-webdriver"
 			browser.find_element(id: "EmergencyContact_NameSuffix").send_keys "Auto" #Suffix
 
 			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").click #Relationship drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(4) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']]").send_keys "Automation Relationship1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(4) > div:nth-child(3) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+				browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys "Automation Relationship1" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 		
 			browser.find_element(id: "EmergencyContact_EmailAddress").send_keys "automatedemergency@email.com" #Email address for emergency contact
 			browser.find_element(id: "EmergencyContact_HomePhone").click #Home number focus

@@ -82,7 +82,7 @@ require "selenium-webdriver"
 
 				#Saves
 					browser.find_element(xpath: "//*[@id='npi-form']/div/ul/li[2]/button").click
-						#browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
+						browser.find_element(xpath: "//*[@id='address-selection-vue']/div/div/div/div[3]/button[2]/span").click #Address validation
 
 =begin
 

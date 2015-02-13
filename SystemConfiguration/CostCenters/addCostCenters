@@ -92,9 +92,6 @@ require "selenium-webdriver"
 										#browser.select_list(:xpath => '/html/body/div/div[2]/div/form/section[1]/div[2]/div[1]/div/div/div[1]').select 'Active'
 
 
-		#Saves Cost Center
-			#browser.find_element(xpath: "//*[@id='form']/div[2]/ul/li[3]/button").click	
-
 =begin
 
 	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));
