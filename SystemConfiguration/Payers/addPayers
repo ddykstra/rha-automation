@@ -59,8 +59,15 @@ require "selenium-webdriver"
 						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
 				
 				#Payer Details
-					#Effective From
+				
 					#Effective To
+						browser.find_element(id: "EffectiveTo").click
+							browser.find_element(id: "EffectiveTo").send_keys "12/25/2015"
+
+					#Effective From
+						browser.find_element(id: "EffectiveFrom").click
+							browser.find_element(id: "EffectiveFrom").send_keys "02/13/2015"
+
 					#Payer Type
 						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div").click #Select Form Type drop down
 						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys "alamance" #Enters a selection

@@ -63,7 +63,7 @@ require "selenium-webdriver"
 
 		#Facility Information
 			browser.find_element(xpath: "//*[@id='facility-section']/div[1]/div/div/div/div[1]/input").click #Locations type drop down
-				browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "ARP" #enters a selection
+				browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "AddedByAutomationLocation1" #enters a selection
 					browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 				#Select All for Services
 					browser.find_element(link_text: "Select All").click		

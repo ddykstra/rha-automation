@@ -24,7 +24,7 @@ require "selenium-webdriver"
 		sleep(1)
 		browser.find_element(id: "cred_sign_in_button").click
 
-	#Navigate to the Clients' page, clicks Authorizations on left nav, and then click Add Authorization button
+#Navigate to the Clients' page, clicks Authorizations on left nav, and then click Add Authorization button
 		#Clicks Clients
 			browser.find_element(link_text: "Clients").click
 		#Searches and accesses a specific client
@@ -77,6 +77,47 @@ require "selenium-webdriver"
 
 				#Saves Authorization
 					browser.find_element(xpath: "//*[@id='request-info']/div[3]/rha-limits/div/div[2]/div/a").click
+
+#Opens Authorization again to fill out Received information
+		
+		#Clicks Authorizations on the left nav
+			browser.find_element(link_text: "Authorizations").click
+
+		#Accesses the added authorization
+			browser.find_element(link_text: "Automationpayer Lastname1").click
+
+			#Enters info for received authorization
+				browser.find_element(id: "Number").send_keys "00001"
+
+			#Status
+				browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").click #Insurance drop down
+				browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Active" #enters a selection
+					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
+
+			#Date Recieved
+				browser.find_element(id: "Effective_From").click
+					browser.find_element(id: "Effective_From").send_keys "02/15/2015"
+
+				#Units Authorized
+					browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
+						browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
+							browser.find_element(id: "UnitsAuthorized").send_keys "20" #enters units authorized amount
+							
+				#Limits
+					browser.find_element(id: "VueLimit_Value").click #Field focus units requested
+						browser.find_element(id: "VueLimit_Value").click #Field focus units requested
+							browser.find_element(id: "VueLimit_Value").send_keys "30" #enters limits amount
+
+				#Status
+					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").click #Insurance drop down
+						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Day" #enters a selection
+							browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
+
+					#Adds Limit
+						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[2]/div/a").click
+
+						#Saves
+							browser.find_element(xpath: "//*[@id='authorization-form']/div/ul/li[2]/button").click
 
 
 

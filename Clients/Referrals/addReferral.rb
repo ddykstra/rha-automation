@@ -42,17 +42,18 @@ require "selenium-webdriver"
 				browser.find_element(id: "Date").send_keys "01/10/2015"
 
 			#Referral Type
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").click #Type drop down
 				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys "Urgent" #enters a selection
 					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
 
+
 			#Referral Source
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").click #Referral Source drop down
 				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys "Community / Agency" #enters a selection
 					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
 			
 			#Reasons for Referral
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").click #Reason drop down
 				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys "CCA" #enters a selection
 					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys :return #selects the selection
 			
@@ -60,13 +61,12 @@ require "selenium-webdriver"
 				browser.find_element(id: "Comments").send_keys "This referral was added through automation"
 			
 			#Referring Provider Name
-				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").click #Gender drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
-
+				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").click #Provider drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+sleep(10)
 				#Saves Referral
 					browser.find_element(xpath: "//*[@id='referral-form']/div[3]/ul/li[2]/button").click
-
 =begin
 
 	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));

@@ -103,6 +103,20 @@ require "selenium-webdriver"
 		#Clicks Services on left Nav
 			browser.find_element(link_text: "UDO List").click
 		#Clicks Add Service
+			browser.find_element(link_text: "Places of Service").click
+
+			#Add company
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Place1"
+
+				#Saves
+					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click
+
+#UDO LIST - Service Category - Navigate to the System Configuration page, clicks UDO List on left nav, and then clicks Race link
+		#Clicks System Config
+			browser.find_element(link_text: "System Configuration").click
+		#Clicks Services on left Nav
+			browser.find_element(link_text: "UDO List").click
+		#Clicks Add Service
 			browser.find_element(link_text: "Races").click
 
 			#Add company
@@ -247,7 +261,7 @@ require "selenium-webdriver"
 	#Authorization Type
 			#browser.find_element(xpath: "//*[@id='bundling_vue']/div[1]/div[2]/div[2]/label/span").click #Sets to "Unmanaged" which lights up "Allow Bundle Authorizations"
 				#Allow Bundled Authorization switch - By default, it's NO - Comment the below line out if wanting to keep NO selected
-				browser.find_element(xpath: "//*[@id='bundling_vue']/div[2]/div[2]/div/div/label[2]/span").click #Switches "Allow Bundled Authorization" to YES
+					#browser.find_element(xpath: "//*[@id='bundling_vue']/div[2]/div[2]/div/div/label[2]/span").click #Switches "Allow Bundled Authorization" to YES
 
 	#Enforce (under Authorization Rules)
 			browser.find_element(id: "enforcement-limit").click #Limit field focus 
@@ -395,8 +409,15 @@ require "selenium-webdriver"
 						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
 				
 				#Payer Details
-					#Effective From
+
 					#Effective To
+						browser.find_element(id: "EffectiveTo").click
+							browser.find_element(id: "EffectiveTo").send_keys "12/25/2015"
+
+					#Effective From
+						browser.find_element(id: "EffectiveFrom").click
+							browser.find_element(id: "EffectiveFrom").send_keys "02/13/2015"
+
 					#Payer Type
 						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div").click #Select Form Type drop down
 						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys "alamance" #Enters a selection
@@ -637,7 +658,7 @@ require "selenium-webdriver"
 		
 		#Entering in data
 			browser.find_element(id: "Number").click #NPI number field
-			browser.find_element(id: "Number").send_keys "2000000000" #Enters 10 digit NPI number
+			browser.find_element(id: "Number").send_keys "3000000000" #Enters 10 digit NPI number
 		#Selects NPI number type
 			browser.find_element(xpath: "//*[@id='npi-form']/section/section/div/div[2]/div/div/div[1]/input").click #NPI type drop down
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Facility" #enters a selection
@@ -667,7 +688,7 @@ require "selenium-webdriver"
 
 		#Facility Information
 			browser.find_element(xpath: "//*[@id='facility-section']/div[1]/div/div/div/div[1]/input").click #Locations type drop down
-				browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "ARP" #enters a selection
+				browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "AddedByAutomationLocation1" #enters a selection
 					browser.find_element(css: "#facility-section > div:nth-child(2) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 				#Select All for Services
 					browser.find_element(link_text: "Select All").click		
@@ -883,9 +904,9 @@ require "selenium-webdriver"
 				browser.find_element(id: "Comments").send_keys "This referral was added through automation"
 			
 			#Referring Provider Name
-				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").click #Gender drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").click #Provider drop down
+				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
+					browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 
 				#Saves Referral
 					browser.find_element(xpath: "//*[@id='referral-form']/div[3]/ul/li[2]/button").click
@@ -1007,16 +1028,10 @@ require "selenium-webdriver"
 					browser.find_element(xpath: "//*[@id='authorization-form']/div[1]/div/div/div[1]/label/span").click #managed
 						#browser.find_element(xpath: "//*[@id='authorization-request-form']/div[1]/div/div/div[2]/label/span").click
 
-
 			#Insurance
 				browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").click #Insurance drop down
 				browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys "Automationpayer Lastname" #enters a selection
 					browser.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
-
-			#Units Requested
-				browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").click #Field focus units requested
-				browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").click #Field focus units requested
-					browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").send_keys "50" #enters units requested amount
 
 			#Request Date
 				browser.find_element(id: "ManagedAuthorizationInputs_DateRequested").click
@@ -1030,18 +1045,68 @@ require "selenium-webdriver"
 				browser.find_element(id: "Effective_From").click
 					browser.find_element(id: "Effective_From").send_keys "02/13/2015"
 
+			#Units Requested
+				browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").click #Field focus units requested
+				browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").click #Field focus units requested
+					browser.find_element(id: "ManagedAuthorizationInputs_UnitsRequested").send_keys "50" #enters units requested amount
+
+			#Request Date
+				browser.find_element(id: "ManagedAuthorizationInputs_DateRequested").click
+					browser.find_element(id: "ManagedAuthorizationInputs_DateRequested").send_keys "02/13/2015"
+
 			#Service
-				browser.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]").click #Insurance drop down
-				browser.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").send_keys "AddedByAutomationService1" #enters a selection
+				browser.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").click #Insurance drop down
+				browser.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").send_keys "HCPCS - AddedByAutomationService1" #enters a selection
 					browser.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").send_keys :return #selects the selection
 sleep(1)
 			#Referring NPI Info (Optional)
-				browser.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").click #Insurance drop down
+				browser.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").click #Referring Provider drop down
 				browser.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation" #enters a selection
 					browser.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
-
+sleep(1)
 				#Saves Authorization
 					browser.find_element(xpath: "//*[@id='authorization-form']/div[3]/ul/li[2]/button").click
+sleep(1)
+#Opens added Authorization again to fill out Received information
+		
+		#Clicks Authorizations on the left nav
+			browser.find_element(link_text: "Authorizations").click
+
+		#Accesses the added authorization
+			browser.find_element(link_text: "Automationpayer Lastname1").click
+
+			#Enters info for received authorization
+				browser.find_element(id: "Number").send_keys "00001"
+
+			#Status
+				browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").click #Insurance drop down
+				browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Active" #enters a selection
+					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
+
+			#Date Recieved
+				browser.find_element(id: "DateReceived").click
+					browser.find_element(id: "DateReceived").send_keys "02/15/2015"
+
+				#Units Authorized
+					browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
+						browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
+							browser.find_element(id: "UnitsAuthorized").send_keys "20" #enters units authorized amount
+							
+				#Limits
+					browser.find_element(id: "VueLimit_Value").click #Field focus units requested
+						browser.find_element(id: "VueLimit_Value").click #Field focus units requested
+							browser.find_element(id: "VueLimit_Value").send_keys "30" #enters limits amount
+
+				#Status
+					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").click #Insurance drop down
+						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Day" #enters a selection
+							browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
+
+					#Adds Limit
+						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[2]/div/a").click
+
+						#Saves
+							browser.find_element(xpath: "//*[@id='authorization-form']/div/ul/li[2]/button").click
 
 
 
