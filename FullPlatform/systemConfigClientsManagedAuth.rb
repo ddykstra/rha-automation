@@ -523,7 +523,7 @@ require "selenium-webdriver"
 
 		#Provider Information
 			browser.find_element(xpath: "//*[@id='provider-section']/div[1]/div[1]/div/div/div[1]/input").click #Name drop down
-				browser.find_element(css: "#provider-section > div:nth-child(2) > div.form-container.col-md-4.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Basic" #enters a selection
+				browser.find_element(css: "#provider-section > div:nth-child(2) > div.form-container.col-md-4.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Admin" #enters a selection
 					browser.find_element(css: "#provider-section > div:nth-child(2) > div.form-container.col-md-4.col-sm-6 > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 				
 				browser.find_element(id: "ProviderInputs_DeaNumber").send_keys "0001" #DEA number
