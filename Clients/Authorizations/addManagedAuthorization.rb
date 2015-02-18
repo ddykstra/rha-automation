@@ -97,14 +97,14 @@ sleep(1)
 				browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Active" #enters a selection
 					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
 
-			#Date Recieved
-				browser.find_element(id: "DateReceived").click
-					browser.find_element(id: "DateReceived").send_keys "02/15/2015"
-
 				#Units Authorized
 					browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
 						browser.find_element(id: "UnitsAuthorized").click #Field focus units requested
 							browser.find_element(id: "UnitsAuthorized").send_keys "20" #enters units authorized amount
+
+				#Date Recieved
+					browser.find_element(id: "DateReceived").click
+						browser.find_element(id: "DateReceived").send_keys "02/15/2015"
 							
 				#Limits
 					browser.find_element(id: "VueLimit_Value").click #Field focus units requested
@@ -112,9 +112,9 @@ sleep(1)
 							browser.find_element(id: "VueLimit_Value").send_keys "30" #enters limits amount
 
 				#Status
-					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").click #Insurance drop down
-						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys "Day" #enters a selection
-							browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection	
+					browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").click #Insurance drop down
+						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys "Day" #enters a selection
+							browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection	
 
 					#Adds Limit
 						browser.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[2]/div/a").click
