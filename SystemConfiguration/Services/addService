@@ -111,7 +111,7 @@ require "selenium-webdriver"
 			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
 			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
 				browser.find_element(id: "billing-limits").send_keys "14" #enters a selection
-					browser.find_element(id: "billing-limits").send_keys :return #selects the selection
+					#browser.find_element(id: "billing-limits").send_keys :return #selects the selection
 			#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[2]/div[3]/div/div/div[1]").click #Per drop down
 			browser.find_element(id: "add-frequency").click #Clicks "Apply Frequency Limits button"
 			

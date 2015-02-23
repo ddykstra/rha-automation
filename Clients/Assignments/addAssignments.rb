@@ -32,10 +32,10 @@ require "selenium-webdriver"
 				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
 					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
 
-				#Clicks Assignments on the left nav
+			#Clicks Assignments on the left nav
 					browser.find_element(link_text: "Assignments").click
 
-				#Clicks Add Assignment
+			#Clicks Add Assignment
 					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
 
 			#Associated Referral

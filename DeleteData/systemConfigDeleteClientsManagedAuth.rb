@@ -98,8 +98,8 @@ sleep(1)
 			
 			browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #Ethnic Origin drop down
 			browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").send_keys :backspace
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "ethnic origin" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").send_keys "udo ethnic origin" #enters a selection
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Primary Language drop down
 			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").send_keys :backspace

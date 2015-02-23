@@ -237,7 +237,7 @@ require "selenium-webdriver"
 			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
 			browser.find_element(id: "billing-limits").click #Field focus for billing frequencies
 				browser.find_element(id: "billing-limits").send_keys "14" #enters a selection
-					browser.find_element(id: "billing-limits").send_keys :return #selects the selection
+					#browser.find_element(id: "billing-limits").send_keys :return #selects the selection
 			#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[2]/div[2]/div[3]/div/div/div[1]").click #Per drop down
 			browser.find_element(id: "add-frequency").click #Clicks "Apply Frequency Limits button"
 			
@@ -913,10 +913,10 @@ require "selenium-webdriver"
 
 #Navigate to the Assignments' Page
 
-				#Clicks Assignments on the left nav
+			#Clicks Assignments on the left nav
 					browser.find_element(link_text: "Assignments").click
 
-				#Clicks Add Assignment
+			#Clicks Add Assignment
 					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
 
 			#Associated Referral
@@ -1067,6 +1067,7 @@ sleep(1)
 				#Saves Authorization
 					browser.find_element(xpath: "//*[@id='authorization-form']/div[3]/ul/li[2]/button").click
 sleep(1)
+
 #Opens Authorization again to fill out Received information
 		
 		#Clicks Authorizations on the left nav
