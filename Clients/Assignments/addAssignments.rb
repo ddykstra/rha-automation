@@ -65,7 +65,7 @@ require "selenium-webdriver"
 				browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").click #Location drop down
 				browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").send_keys "Admin" #enters a selection
 					browser.find_element(xpath: "//*[@id='staff-members']/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
-
+sleep(1)
 			#Staff Member
 				browser.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").click #Location drop down
 				browser.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").send_keys "Admin" #enters a selection

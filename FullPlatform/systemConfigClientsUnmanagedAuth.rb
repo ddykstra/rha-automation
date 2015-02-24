@@ -759,7 +759,7 @@ require "selenium-webdriver"
 					
 				sleep(1)
 				#Expected amount
-					browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").click
+					#browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").click
 						browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").send_keys "500"
 
 					#Saves Contract
@@ -1146,6 +1146,120 @@ sleep(1)
 
 					#Saves Goal
 						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button").click
+
+#Progress Note
+		#Clicks Progress Note in form builder
+			browser.find_element(link_text: "Progress Note").click
+
+				#Clicks Add Progress Note
+					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/div/div/a").click
+
+				#Is Progress Note billable switch - Uncomment if wanting to set it to NO
+					#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[1]/label[2]/span").click
+
+					#Service Date
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[1]/div/div/input").click
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[1]/div/div/input").send_keys "02/13/2015"
+
+					#Location selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").click #Location drop down
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").send_keys "AddedByAutomationLocation1" #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").send_keys :return #selects the selection
+					
+					#Program selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").click #Program drop down
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").send_keys "AddedByAutomationProgram1" #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").send_keys :return #selects the selection
+					
+					#Place of Service selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").click #Place of Service drop down
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").send_keys "Automation Place" #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").send_keys :return #selects the selection
+
+					#Contact Type radio buttons - Uncomment if needing to change to "Not to face to face"
+						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[5]/div/label[2]/span").click #Face to face
+							#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[5]/div/label[3]/span").click #Not face to face	
+
+					#Service Item selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").click #Place of Service drop down
+						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys "addedbyautomation" #enters a selection
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys :arrow_down #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys :return #selects the selection
+
+					#Does the Service have an Authorization
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[2]/div/label[2]/span").click #YES
+						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[2]/div/label[3]/span").click #NO
+
+					#Service Start Time
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").click #Place of Service drop down
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").send_keys "12:30pm" #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").send_keys :return #selects the selection
+
+					#Service End Time
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").click #Place of Service drop down
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").send_keys "6:30pm" #enters a selection
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").send_keys :return #selects the selection
+
+				#Goals Tab
+					#Select and add Goals
+						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").click #Place of Service drop down
+						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").send_keys "" #enters a selection
+							#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").send_keys :return #selects the selection
+					#Clicks Add
+						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[2]/button").click
+
+				#Interventions Tab
+
+
+				#Outcomes Tab
+
+
+				#Plan Tab
+
+
+				#Comments Tab
+
+
+				#E-Pin
+					#Enters epin
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
+
+#SAVES PROGRESS NOTE DRAFT
+						#Saves Draft
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[2]").click
+sleep(1)
+
+		#Accesses the new drafted Progress Note
+				#Clicks Progress Note in form builder
+					browser.find_element(link_text: "Progress Note").click
+
+				#Edits the Progress Note
+					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/table/tbody/tr/td[7]/div[1]/a/i").click
+sleep(2)
+				#E-Pin
+					#Enters epin
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
+
+#SUBMITS PROGRESS NOTE FOR APPROVAL
+						#Submits for Approval
+							browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[3]").click
+sleep(1)
+		
+		#Accesses the new submitted Progress Note
+				#Clicks Progress Note in form builder
+					browser.find_element(link_text: "Progress Note").click
+
+				#Edits the Progress Note
+					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/table/tbody/tr[1]/td[7]/div[1]/a/i").click
+sleep(2)
+				#E-Pin
+					#Enters epin
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
+sleep(1)
+#APPROVES PROGRESS NOTE
+					#Approves Progress Note
+						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[3]").click
+sleep(1)
 
 =begin
 

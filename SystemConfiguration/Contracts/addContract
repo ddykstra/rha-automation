@@ -89,7 +89,7 @@ require "selenium-webdriver"
 					
 				sleep(2)
 				#Expected amount
-					browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").click
+					#browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").click
 						browser.find_element(xpath: "//*/section[2]/div[2]/div/div/table/tbody/tr/td[3]/input").send_keys "500"
 
 					#Saves Contract

@@ -24,6 +24,27 @@ require "selenium-webdriver"
 		sleep(1)
 		browser.find_element(id: "cred_sign_in_button").click
 
+#Goals
+
+		#Clicks Clients
+			browser.find_element(link_text: "Clients").click
+		#Searches and accesses a specific client
+			browser.find_element(id: "search").send_keys "Automation"
+				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
+					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+
+				#Clicks Clinical Chart on the left nav
+					browser.find_element(link_text: "Clinical Chart").click
+sleep(1)
+				#Clicks Goals in form builder
+					browser.find_element(link_text: "Goals").click
+
+					#Edits the Goal
+					 browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/table/tbody/tr/td[7]/div[1]/a/i").click
+
+					 	#Saves goal
+					 		browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button").click
+
 #Manage Authorization
 
 		#Clicks Clients
@@ -157,8 +178,8 @@ sleep(1)
 #NPI FACILITY 
 		
 				#Clicks Delete
-					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/table/tbody/tr[6]/td[7]/div[1]/a[2]/i").click
-						browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/table/tbody/tr[6]/td[7]/div[3]/button[1]").click
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/table/tbody/tr[5]/td[7]/div[1]/a[2]/i").click
+						browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[2]/table/tbody/tr[5]/td[7]/div[3]/button[1]").click
 sleep(1)
 #COST CENTERS 
 
