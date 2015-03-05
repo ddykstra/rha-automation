@@ -245,7 +245,7 @@ sleep(1)
 			browser.find_element(link_text: "Clinical Goals").click
 				
 			#Clicks Delete
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 						
 sleep(1)
 #UDO LIST - Companies 
@@ -256,7 +256,7 @@ sleep(1)
 			browser.find_element(link_text: "Companies").click
 
 			#Deletes company
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[3]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[3]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Service Categories 
 		#Clicks "Back to UDL List"
@@ -266,7 +266,7 @@ sleep(1)
 			browser.find_element(link_text: "Service Categories").click
 
 			#Deletes Service category
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[2]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[2]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Ethnic Origins 
 		#Clicks "Back to UDL List"
@@ -276,7 +276,7 @@ sleep(1)
 			browser.find_element(link_text: "Ethnic Origins").click
 
 			#Deletes Ethnic Origin
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Languages 
 		#Clicks "Back to UDL List"
@@ -286,7 +286,7 @@ sleep(1)
 			browser.find_element(link_text: "Languages").click
 
 			#Deletes Language
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Places of Service 
 		#Clicks "Back to UDL List"
@@ -296,7 +296,7 @@ sleep(1)
 			browser.find_element(link_text: "Places of Service").click
 
 			#Deletes Places of Service
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Races 
 		#Clicks "Back to UDL List"
@@ -306,7 +306,7 @@ sleep(1)
 			browser.find_element(link_text: "Races").click
 
 			#Deletes Races
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 sleep(1)
 #UDO LIST - Relationships 
 		#Clicks "Back to UDL List"
@@ -316,7 +316,7 @@ sleep(1)
 			browser.find_element(link_text: "Relationships").click
 
 			#Deletes Relationships
-				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[1]/i").click
+				browser.find_element(xpath: "//*[@id='udl-list']/div/div/ul/li[1]/div/span[2]/a[3]/i").click
 
 =begin
 

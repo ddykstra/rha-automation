@@ -78,7 +78,7 @@ require "selenium-webdriver"
 			browser.find_element(link_text: "Ethnic Origins").click
 
 			#Add company
-				browser.find_element(id: "ItemInput_Name").send_keys "Automation Ethnic Origin1"
+				browser.find_element(id: "ItemInput_Name").send_keys "Automation Ethnic Origin1" 
 
 				#Saves
 					browser.find_element(xpath: "//*[@id='udl-form']/div[2]/div/button").click 
@@ -786,37 +786,37 @@ require "selenium-webdriver"
 			browser.find_element(id: "PersonalInfo_Birthdate").click
 				browser.find_element(id: "PersonalInfo_Birthdate").send_keys "03/30/1990"
 			browser.find_element(id: "PersonalInfo_EclipseId").send_keys "1"
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Gender drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "Female" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").click #Gender drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").send_keys "Female" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Race1 drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Race1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").click #Race1 drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").send_keys "Automation Race1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[3]/div[3]/div/div/div[1]/input").click #Race2 drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation1 Race1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[3]/div/div/div[1]/input").click #Race2 drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[3]/div/div/div[1]/input").send_keys "Automation Race1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[3]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #Ethnic Origin drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Ethnic Origin1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #Ethnic Origin drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").send_keys "Automation Ethnic Origin1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[4]/div[2]/div/div/div[1]/input").click #County of Origin drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Alamance" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[2]/div/div/div[1]/input").click #County of Origin drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[2]/div/div/div[1]/input").send_keys "Alamance" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[4]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Primary Language drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Primary Language drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").send_keys "Automation Language1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").click #Secondary Language drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").click #Secondary Language drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").send_keys "Automation Language1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
 			
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").click #Third Language drop down
-				browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Automation Language1" #enters a selection
-					browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(2) > div:nth-child(6) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
+			browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").click #Third Language drop down
+				browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").send_keys "Automation Language1" #enters a selection
+					browser.find_element(xpath: "/html/body/div/div/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
 
 					browser.find_element(id: "PersonalInfo_EthnicInfoNotes").send_keys "This client info was added by automaton."
 
@@ -832,9 +832,9 @@ require "selenium-webdriver"
 						browser.find_element(id: "ContactInfo_Address_ZipCode").click #Zipcode focus
 						browser.find_element(id: "ContactInfo_Address_ZipCode").send_keys "123451234" #Enters 9-digit zip code
 
-						browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[3]/div[4]/div/div/div[1]/input").click #Select County of residence drop down
-							browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "alamance" #Enters a selection
-								browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+						browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[3]/div[4]/div/div/div[1]/input").click #Select County of residence drop down
+							browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[3]/div[4]/div/div/div[1]/input").send_keys "alamance" #Enters a selection
+								browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[3]/div[4]/div/div/div[1]/input").send_keys :return #Selects the selection
 						browser.find_element(id: "ContactInfo_CellPhone").click #Cell number focus
 							browser.find_element(id: "ContactInfo_CellPhone").send_keys "9997778888" #Enters Cell number
 						browser.find_element(id: "ContactInfo_HomePhone").click #Home number focus
@@ -843,9 +843,9 @@ require "selenium-webdriver"
 							browser.find_element(id: "ContactInfo_WorkPhone").send_keys "4445556677" #Enters Work number	
 						browser.find_element(id: "ContactInfo_EmailAddress").send_keys "automated1@email.com" #Email address
 
-						browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[2]/div[5]/div[2]/div/div/div[1]/input").click #Select Preferred Communication drop down
-							browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Cell" #Enters a selection
-								browser.find_element(css: "body > div.page-container > div > div > form > section:nth-child(3) > div:nth-child(6) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
+						browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[6]/div[2]/div/div/div[1]/input").click #Select Preferred Communication drop down
+							browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[6]/div[2]/div/div/div[1]/input").send_keys "Cell" #Enters a selection
+								browser.find_element(xpath: "/html/body/div/div/div/form/section[2]/div[6]/div[2]/div/div/div[1]/input").send_keys :return #Selects the selection
 						
 						browser.find_element(id: "ContactInfo_PrimaryShelter").send_keys "Home" #Primary shelter
 							browser.find_element(id: "ContactInfo_SecondaryShelter").send_keys "Gun range" #Secondary shelter
@@ -858,9 +858,9 @@ require "selenium-webdriver"
 			browser.find_element(id: "EmergencyContact_NameLast").send_keys "Autoemergencylastname1" #Last name
 			browser.find_element(id: "EmergencyContact_NameSuffix").send_keys "Auto" #Suffix
 
-			browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").click #Relationship drop down
-				browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys "Automation Relationship1" #enters a selection
-					browser.find_element(xpath: "/html/body/div[1]/div/div/form/section[3]/div[2]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+			browser.find_element(xpath: "//*[@id='guardian-info-section']/div[5]/div[1]/div/div/div[1]/input").click #Relationship drop down
+				browser.find_element(xpath: "//*[@id='guardian-info-section']/div[5]/div[1]/div/div/div[1]/input").send_keys "Automation Relationship1" #enters a selection
+					browser.find_element(xpath: "//*[@id='guardian-info-section']/div[5]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
 		
 			browser.find_element(id: "EmergencyContact_EmailAddress").send_keys "automatedemergency@email.com" #Email address for emergency contact
 			browser.find_element(id: "EmergencyContact_HomePhone").click #Home number focus
