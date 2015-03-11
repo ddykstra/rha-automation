@@ -64,35 +64,35 @@ require "selenium-webdriver"
 			
 	#P & L and Balance Sheet Mapping
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #P&L - Department drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "234" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "10" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[2]/div/div/div[1]").click #P&L - Root Account drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "4323" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "4510" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[3]/div/div/div[1]/input").click #P&L - Product line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "432" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "11" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[4]/div/div/div[1]/input").click #P&L - Service line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "3442" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Balance Sheet - Department line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "11" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").click #Balance Sheet - Root account drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "1212" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "1250" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").click #Balance Sheet - Product line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "13" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[4]/div/div/div[1]/input").click #Balance Sheet - Service line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "14" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 	#Billing Rules
