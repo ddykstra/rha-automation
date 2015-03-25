@@ -23,7 +23,7 @@ require "selenium-webdriver"
 		browser.find_element(id: "cred_sign_in_button").click
 		sleep(1)
 		browser.find_element(id: "cred_sign_in_button").click
-
+		sleep(1)
 	#Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
 		#Clicks System Config
 			browser.find_element(link_text: "System Configuration").click
@@ -140,7 +140,8 @@ require "selenium-webdriver"
 	#Enforce (under Authorization Rules)
 			browser.find_element(id: "enforcement-limit").click #Limit field focus 
 				browser.find_element(id: "enforcement-limit").send_keys "35" #Enters limit amount
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/div").click #Per drop down
+			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/input").click #Per drop down
+				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/input").send_keys "Day"
 				#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys "14" #enters a selection
 					#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys :return #selects the selection
 			browser.find_element(id: "add-limit").click #Clicks "Apply Frequency Limits button"
@@ -171,11 +172,11 @@ require "selenium-webdriver"
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[2]/label/span").click #Down option
 
 
-sleep(2)
+sleep(1)
 
 			#Saves the Service
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
-
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
 =begin
 
 	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));

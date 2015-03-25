@@ -97,6 +97,6 @@ require "selenium-webdriver"
 
 =end
 
-#browser.close
+browser.close
 
 

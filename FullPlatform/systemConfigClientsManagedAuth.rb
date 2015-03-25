@@ -153,8 +153,8 @@ require "selenium-webdriver"
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[3]/button").click
 
 #SERVICES - Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+			#Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
+
 		#Clicks Services on left Nav
 			browser.find_element(link_text: "Services").click
 		#Clicks Add Service
@@ -173,12 +173,14 @@ require "selenium-webdriver"
 				browser.find_element(id: "ServiceModel_UsualCharge").send_keys "500" #enters usual charge amount
 			browser.find_element(id: "ServiceModel_HCPCS").send_keys "HCPCSauto" #HCPCS field
 			browser.find_element(id: "ServiceModel_Modifier").send_keys "Modauto" #Modifier field
+			
 			browser.find_element(id: "ServiceModel_Effective_To").click
 				browser.find_element(id: "ServiceModel_Effective_To").send_keys "12/30/2020"
 				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[6]").click #Chooses today
 			browser.find_element(id: "ServiceModel_Effective_From").click #Effective from calendar
 				browser.find_element(id: "ServiceModel_Effective_From").send_keys "01/01/2015"
 				#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click #Chooses today
+
 			
 			#Uncomment below line if changing BILL TYPE to "Inpatient"; otherwise, it will default to "Outpatient"
 				#browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[3]/div[1]/div/div[1]/label/span").click
@@ -190,35 +192,35 @@ require "selenium-webdriver"
 			
 	#P & L and Balance Sheet Mapping
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[1]/div/div/div[1]/input").click #P&L - Department drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "234" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "10" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[2]/div/div/div[1]").click #P&L - Root Account drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "4323" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys "4510" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options.focus.input-active.dropdown-active > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[3]/div/div/div[1]/input").click #P&L - Product line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "432" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys "11" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[4]/div[4]/div/div/div[1]/input").click #P&L - Service line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "3442" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(5) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[1]/div/div/div[1]/input").click #Balance Sheet - Department line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "11" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(1) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[2]/div/div/div[1]/input").click #Balance Sheet - Root account drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "1212" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "1250" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[3]/div/div/div[1]/input").click #Balance Sheet - Product line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "13" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(3) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[1]/div[5]/div[4]/div/div/div[1]/input").click #Balance Sheet - Service line drop down
-				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "14" #enters a selection
+				browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "00" #enters a selection
 					browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(2) > div:nth-child(7) > div:nth-child(4) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #selects the selection
 
 	#Billing Rules
@@ -259,14 +261,15 @@ require "selenium-webdriver"
 				browser.find_element(xpath: "//*[@id='bundling_vue']/div[2]/div/div/label[2]/span").click #Requiree Referral for authorization; switches to YES
 					browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[2]/div/div/label[2]/span").click #Requires Diagnosis; switches to YES
 	#Authorization Type
-			#browser.find_element(xpath: "//*[@id='bundling_vue']/div[1]/div[2]/div[2]/label/span").click #Sets to "Unmanaged" which lights up "Allow Bundle Authorizations"
+			browser.find_element(xpath: "//*[@id='bundling_vue']/div[1]/div[2]/div[2]/label/span").click #Sets to "Unmanaged" which lights up "Allow Bundle Authorizations"
 				#Allow Bundled Authorization switch - By default, it's NO - Comment the below line out if wanting to keep NO selected
-					#browser.find_element(xpath: "//*[@id='bundling_vue']/div[2]/div[2]/div/div/label[2]/span").click #Switches "Allow Bundled Authorization" to YES
+				browser.find_element(xpath: "//*[@id='bundling_vue']/div[2]/div[2]/div/div/label[2]/span").click #Switches "Allow Bundled Authorization" to YES
 
 	#Enforce (under Authorization Rules)
 			browser.find_element(id: "enforcement-limit").click #Limit field focus 
 				browser.find_element(id: "enforcement-limit").send_keys "35" #Enters limit amount
-			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/div").click #Per drop down
+			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/input").click #Per drop down
+				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[3]/div[3]/div[2]/div/div/div[1]/input").send_keys "Day"
 				#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys "14" #enters a selection
 					#browser.find_element(css: "body > div > div.page-content > div > form > section:nth-child(3) > div:nth-child(4) > div:nth-child(3) > div > div > div.selectize-input.items.has-options.full.has-items").send_keys :return #selects the selection
 			browser.find_element(id: "add-limit").click #Clicks "Apply Frequency Limits button"
@@ -296,12 +299,15 @@ require "selenium-webdriver"
 			browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[1]/label/span").click #Up option
 				browser.find_element(xpath: "/html/body/div/div[2]/div/form/section[5]/div/div[2]/div/div[2]/label/span").click #Down option
 
+
+sleep(1)
+
 			#Saves the Service
 				browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
+					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/form/div/ul/li[2]/button").click
 
 #PROGRAMS - Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks Programs on left Nav
 			browser.find_element(link_text: "Programs").click
 		#Clicks Add Program
@@ -330,8 +336,7 @@ require "selenium-webdriver"
 
 
 #LOCATIONS - Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks Locations on left Nav
 			browser.find_element(link_text: "Locations").click
 		#Clicks Add Location
@@ -375,8 +380,7 @@ require "selenium-webdriver"
 
 
 #PAYERS - Navigate to the System Configuration page, clicks Programs on left nav, and then click Add Program button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks Payers on left Nav
 			browser.find_element(link_text: "Payers").click
 		#Clicks Add Payer
@@ -404,12 +408,8 @@ require "selenium-webdriver"
 							browser.find_element(id: "Fax").click #Fax number focus
 							browser.find_element(id: "Fax").send_keys "1112223333" #Enters fax number
 
-					browser.find_element(xpath: "//*[@id='form']/section[2]/div[2]/div/div/div/div[1]/input").click #Select Counties drop down
-						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "alamance" #Enters a selection
-						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
-				
 				#Payer Details
-
+				
 					#Effective To
 						browser.find_element(id: "EffectiveTo").click
 							browser.find_element(id: "EffectiveTo").send_keys "12/25/2015"
@@ -419,11 +419,19 @@ require "selenium-webdriver"
 							browser.find_element(id: "EffectiveFrom").send_keys "02/13/2015"
 
 					#Payer Type
-						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div").click #Select Form Type drop down
-						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys "alamance" #Enters a selection
-						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys :return #Selects the selection
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[3]/div/div/div[1]/div").click #Select Payer Type drop down
 
+					#Form Type
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div/div[1]/input") #Selects Form type drop down
 
+					#837 usage type radio buttons
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[2]/div/div/div[1]/label/span").click
+
+					#Select counties
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").click #Select Counties drop down
+							browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").send_keys "alamance" #Enters a selection
+								browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").send_keys :return #Selects the selection
+				
 		#Saves Payer
 			browser.find_element(xpath: "//*[@id='form']/div[2]/ul/li[3]/button").click	
 			#Uncomment for "Save and Add another" button click
@@ -434,8 +442,7 @@ require "selenium-webdriver"
 
 
 #COST CENTERS - Navigate to the System Configuration page, clicks Cost Centers on left nav, and then click Add Program button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks Cost Centers on left Nav
 			browser.find_element(link_text: "Cost Centers").click
 		#Clicks Add Cost Center
@@ -483,8 +490,7 @@ require "selenium-webdriver"
 
 
 #NPI PROVIDER - Navigate to the System Configuration page, clicks NPI on left nav, and then click Add NPI button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks NPI Management on left Nav
 			browser.find_element(link_text: "NPI Management").click
 		#Clicks Add NPI
@@ -585,8 +591,7 @@ require "selenium-webdriver"
 
 
 #NPI REFERRAL - Navigate to the System Configuration page, clicks NPI on left nav, and then click Add NPI button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks NPI Management on left Nav
 			browser.find_element(link_text: "NPI Management").click
 		#Clicks Add Program
@@ -647,8 +652,7 @@ require "selenium-webdriver"
 
 
 #NPI FACILITY - Navigate to the System Configuration page, clicks NPI on left nav, and then click Add NPI button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks NPI Management on left Nav
 			browser.find_element(link_text: "NPI Management").click
 		#Clicks Add Program
@@ -697,8 +701,7 @@ require "selenium-webdriver"
 					browser.find_element(xpath: "//*[@id='npi-form']/div/ul/li[2]/button").click
 
 #CONTRACTS - Navigate to the System Configuration page, clicks Services on left nav, and then click Add Service button
-		#Clicks System Config
-			browser.find_element(link_text: "System Configuration").click
+
 		#Clicks Services on left Nav
 			browser.find_element(link_text: "Contracts").click
 		#Clicks Add Service

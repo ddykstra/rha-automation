@@ -54,10 +54,6 @@ require "selenium-webdriver"
 							browser.find_element(id: "Fax").click #Fax number focus
 							browser.find_element(id: "Fax").send_keys "1112223333" #Enters fax number
 
-					browser.find_element(xpath: "//*[@id='form']/section[2]/div[2]/div/div/div/div[1]/input").click #Select Counties drop down
-						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "alamance" #Enters a selection
-						browser.find_element(css: "#form > section:nth-child(3) > div:nth-child(4) > div > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys :return #Selects the selection
-				
 				#Payer Details
 				
 					#Effective To
@@ -69,11 +65,19 @@ require "selenium-webdriver"
 							browser.find_element(id: "EffectiveFrom").send_keys "02/13/2015"
 
 					#Payer Type
-						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div").click #Select Form Type drop down
-						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys "alamance" #Enters a selection
-						#browser.find_element(css: "#form > section:nth-child(7) > div:nth-child(2) > div:nth-child(4) > div > div > div.selectize-input.items.full.has-options.has-items").send_keys :return #Selects the selection
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[3]/div/div/div[1]/div").click #Select Payer Type drop down
 
+					#Form Type
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[1]/div[4]/div/div/div[1]/input") #Selects Form type drop down
 
+					#837 usage type radio buttons
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[2]/div/div/div[1]/label/span").click
+
+					#Select counties
+						browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").click #Select Counties drop down
+							browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").send_keys "alamance" #Enters a selection
+								browser.find_element(xpath: "//*[@id='form']/section[2]/div[3]/div/div/div/div[1]/input").send_keys :return #Selects the selection
+				
 		#Saves Payer
 			browser.find_element(xpath: "//*[@id='form']/div[2]/ul/li[3]/button").click	
 			#Uncomment for "Save and Add another" button click

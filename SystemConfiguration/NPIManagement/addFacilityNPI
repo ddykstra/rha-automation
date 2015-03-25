@@ -11,7 +11,7 @@ xpath				:xpath/
 require "rubygems"
 require "selenium-webdriver"
  browser = Selenium::WebDriver.for :firefox
-  browser.get "hhttps://rha.azurewebsites.net/"
+  browser.get "https://rha.azurewebsites.net/"
   #browser.window.resize_to(1680,1050)
   #driver.manage.timeouts.implicit_wait = 10
    browser.current_url
@@ -35,7 +35,7 @@ require "selenium-webdriver"
 		
 		#Entering in data
 			browser.find_element(id: "Number").click #NPI number field
-			browser.find_element(id: "Number").send_keys "2000000000" #Enters 10 digit NPI number
+			browser.find_element(id: "Number").send_keys "3000000000" #Enters 10 digit NPI number
 		#Selects NPI number type
 			browser.find_element(xpath: "//*[@id='npi-form']/section/section/div/div[2]/div/div/div[1]/input").click #NPI type drop down
 				browser.find_element(css: "#npi-form > section > section > div > div:nth-child(2) > div > div > div.selectize-input.items.not-full.has-options > input[type='text']").send_keys "Facility" #enters a selection
