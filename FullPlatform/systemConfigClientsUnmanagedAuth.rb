@@ -623,7 +623,6 @@ sleep(1)
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").click #Effective From date
 						browser.find_element(id: "VueTaxonomy_EffectiveDates_From").send_keys "01/01/2015"
 						#browser.find_element(xpath: "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[5]").click
-
 								
 								browser.find_element(xpath: "//*[@id='npi-form']/section[1]/section/rha-taxonomies/section/div/div/div[2]/div/a").click  #Apply Taxonomy button
 
