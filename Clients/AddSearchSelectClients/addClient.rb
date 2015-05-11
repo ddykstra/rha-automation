@@ -11,10 +11,11 @@ require 'selenium-webdriver'
 
 	USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
 	PASSWORD = 'RHAdev9891'
+	ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
 	def setup
 		@driver = Selenium::WebDriver.for :firefox
-		@driver.navigate.to "https://rha.azurewebsites.net/"
+		@driver.navigate.to ENVIRONMENT_UNDER_TEST
 		@driver.manage.timeouts.implicit_wait = 10
 	end
 
