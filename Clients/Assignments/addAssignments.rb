@@ -110,7 +110,7 @@ require "selenium-webdriver"
 	
 	def fill_in_staff_member
 		puts 'Filling in Staff Member'
-		wait.until {@driver.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").displayed?}
+		@wait.until {@driver.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").displayed?}
 		@driver.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").click #Location drop down
 		@driver.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").send_keys "Admin" #enters a selection
 		@driver.find_element(xpath: "//*[@id='staff-members']/div/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
