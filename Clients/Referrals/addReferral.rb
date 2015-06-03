@@ -1,85 +1,116 @@
 /class name			:class_name			:class
-css selector		:css	 
-id					:id	 
+css selector		:css
+id					:id
 link text			:link_text			:link
-name				:name	 
-partial link text	:partial_link_text	 
-tag name			:tag_name	 
+name				:name
+partial link text	:partial_link_text
+tag name			:tag_name
 xpath				:xpath/
 
-#BROWSER: FIREFOX
-require "rubygems"
-require "selenium-webdriver"
- browser = Selenium::WebDriver.for :firefox
-  browser.get "https://rha.azurewebsites.net/"
-  #browser.window.resize_to(1680,1050)
-  #driver.manage.timeouts.implicit_wait = 10
-   browser.current_url
-	browser.title
+require 'selenium-webdriver'
+require 'test/unit'
 
-	#Login screen
-		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
-		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
-		browser.find_element(id: "cred_sign_in_button").click
-		sleep(1)
-		browser.find_element(id: "cred_sign_in_button").click
+USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
+PASSWORD = 'RHAdev9891'
+ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
-	#Navigate to the Add Referral page
-		#Clicks Client
-			browser.find_element(link_text: "Clients").click
-		#Searches and accesses a specific client
-			browser.find_element(id: "search").send_keys "Automation"
-				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
-					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+CLIENT_FIRST_NAME = "Angela"
+CLIENT_LAST_NAME = "Renard"
 
-				#Clicks Referrals on the left nav
-					browser.find_element(link_text: "Referrals").click
+def setup
+	@driver = Selenium::WebDriver.for :firefox
+	@driver.navigate.to ENVIRONMENT_UNDER_TEST
+	@driver.manage.timeouts.implicit_wait = 10
+end
 
-				#Clicks Add Referral
-					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a").click
+def teardown
+	puts "Test Completed."
+	@driver.quit
+end
 
-			browser.find_element(id: "Date").click
-				browser.find_element(id: "Date").send_keys "01/10/2015"
+def run
+	setup
+	yield
+	teardown
+end
 
-			#Referral Type
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").click #Type drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys "Urgent" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+def login(username,password)
+	puts 'Logging in'
 
+	@driver.find_element(id: 'cred_userid_inputtext').send_keys username # 'rhadevadmin@rhadev.onmicrosoft.com'
+	@driver.find_element(id: 'cred_password_inputtext').send_keys password # 'RHAdev9891'
+	@driver.find_element(id: 'cred_sign_in_button').click
+	sleep(1)
+	@driver.find_element(id: 'cred_sign_in_button').click
+end
 
-			#Referral Source
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").click #Referral Source drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys "Community / Agency" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
-			
-			#Reasons for Referral
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").click #Reason drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys "CCA" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/div[1]/div[4]/div/div/div[1]/input").send_keys :return #selects the selection
-			
-			#Enters a Comment
-				browser.find_element(id: "Comments").send_keys "This referral was added through automation"
-			
-			#Referring Provider Name
-				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").click #Provider drop down
-				browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation Lastname" #enters a selection
-					browser.find_element(xpath: "//*[@id='referral-form']/rha-referring-provider/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
-sleep(10)
-				#Saves Referral
-					browser.find_element(xpath: "//*[@id='referral-form']/div[3]/ul/li[2]/button").click
-=begin
+def logout
+	puts 'Logging out'
+	@driver.find_element(css: 'a.dropdown-toggle i.caret').click
+	@driver.find_element(css: 'a[href="/account/signout"]').click
+end
 
-	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));
-	#/WebDriverWait wait = new WebDriverWait(webDriver, timeoutInSeconds);
-	#wait.until(ExpectedConditions.visibilityOfElementLocated(By.class "selectize-control"));/
-	#browser.find_element(link_text: "Images").click
-	#browser.find_elements(tag_name: "img").size
+def navigate_to_a_client(name)
+    @driver.find_element(id: "search").send_keys name
+    @driver.find_element(css: "input[value=\"Go\"]").click
+    assert(@driver.find_element(link_text: name), "Client not found in list.")
+    @driver.find_element(link_text: name).click
+end
 
-		#Logout
-			browser.find_element(id: "signout-icon").click
+def navigate_to_add_referral_page
+    @driver.find_element(link_text: "Referrals").click
+end
 
-=end
+def click_add_referral
+    @driver.find_element(css: "a[href~=\"referrals/create\"]").click
+end
 
-browser.close
+def fill_in_referral_info
+    @driver.find_element(id: "Date").click
+    @driver.find_element(id: "Date").send_keys "01/10/2015"
 
+    referral_type_dropdown = @driver.find_element(id: "Type").find_element(xpath: "..").find_element(css: "input")
+    referral_type_dropdown.click
+    referral_type_dropdown.send_keys "Routine"
+    referral_type_dropdown.send_keys :return
 
+    referral_source_dropdown = @driver.find_element(id: "Source").find_element(xpath: "..").find_element(css: "input")
+    referral_source_dropdown.click
+    referral_source_dropdown.send_keys "Community / Agency"
+    referral_source_dropdown.send_keys :return
+
+    referraL_reason_dropdown = @driver.find_element(id: "Reasons_SelectedValue").find_element(xpath: "..").find_element(css: "input")
+    referraL_reason_dropdown.click
+    referraL_reason_dropdown.send_keys "CCA"
+    referraL_reason_dropdown.send_keys :return
+
+    @driver.find_element(id: "Comments").click
+    @driver.find_element(id: "Comments").send_keys "Automation comment"
+end
+
+def fill_in_referring_npi_info
+    provider_name_dropdown = @driver.find_element(id: "Referrer_Provider_SelectedValue").find_element(xpath: "..").find_element(css: "input")
+    provider_name_dropdown.click
+    provider_name_dropdown.send_keys "2000000000 - Referralautomation Lastname"
+    provider_name_dropdown.send_keys :return
+end
+
+def click_save
+    @driver.find_element(css: "button[type=\"submit\"].btn.btn-primary").click
+end
+
+run do
+	# 1. Login
+	login USERNAME, PASSWORD
+
+    # 2. Add a referral
+    navigate_to_a_client "#{CLIENT_FIRST_NAME} #{CLIENT_LAST_NAME}"
+    navigate_to_add_referral_page
+    click_add_referral
+    fill_in_referral_info
+    fill_in_referring_npi_info
+    click_save
+
+	# 3. Profit
+	logout
+end

@@ -67,7 +67,7 @@ require "selenium-webdriver"
 
     def click_add_authorization
         puts 'Clicking Add Authorization'
-        @driver.find_element(css: "a[href=\"/clinical/clients/1/authorizations/create\"]").click
+        @driver.find_element(css: "a[href~=\"authorizations/create\"]").click
     end
 
     def set_authorization_type(type)

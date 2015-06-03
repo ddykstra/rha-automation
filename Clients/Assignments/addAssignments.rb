@@ -67,7 +67,7 @@ require "selenium-webdriver"
 
 	def click_add_assignment
 		puts 'Clicking on "Add Assignment"'
-		@driver.find_element(css: "a[href=\"/clinical/clients/1025/assignments/create\"]").click
+		@driver.find_element(css: "a[href~=\"assignments/create\"]").click
 	end
 
 	def fill_in_associated_referral
