@@ -1,97 +1,120 @@
 /class name			:class_name			:class
-css selector		:css	 
-id					:id	 
+css selector		:css
+id					:id
 link text			:link_text			:link
-name				:name	 
-partial link text	:partial_link_text	 
-tag name			:tag_name	 
+name				:name
+partial link text	:partial_link_text
+tag name			:tag_name
 xpath				:xpath/
 
-#BROWSER: FIREFOX
-require "rubygems"
-require "selenium-webdriver"
- browser = Selenium::WebDriver.for :firefox
-  browser.get "https://rha.azurewebsites.net/"
-  #browser.window.resize_to(1680,1050)
-  #driver.manage.timeouts.implicit_wait = 10
-   browser.current_url
-	browser.title
+require 'selenium-webdriver'
 
-	#Login screen
-		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
-		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
-		browser.find_element(id: "cred_sign_in_button").click
-		sleep(1)
-		browser.find_element(id: "cred_sign_in_button").click
+USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
+PASSWORD = 'RHAdev9891'
+ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
-#Navigate to the Payers' page
-		#Clicks Clients
-			browser.find_element(link_text: "Clients").click
-		#Searches and accesses a specific client
-			browser.find_element(id: "search").send_keys "Automation"
-				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
-					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+CLIENT_FIRST_NAME = "Clement"
+CLIENT_LAST_NAME = "Clarkson"
 
-				#Clicks Payers on the left nav
-					browser.find_element(link_text: "Payers").click
+def setup
+	@driver = Selenium::WebDriver.for :firefox
+	@driver.navigate.to ENVIRONMENT_UNDER_TEST
+	@driver.manage.timeouts.implicit_wait = 10
+end
 
-				#Clicks Add Payers
-					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div[3]/a/i").click
+def teardown
+	puts "Test Completed."
+	@driver.quit
+end
 
-			#Payer Name
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").click #Payer drop down
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").send_keys "Automationpayer Lastname" #enters a selection
-					browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+def run
+	setup
+	yield
+	# teardown
+end
 
-			#Policy Number
-				browser.find_element(id: "PolicyNumber").send_keys "0000001"
+def login(username,password)
+	puts 'Logging in'
 
-			#Priority
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[1]/label/span").click #Primary
-					browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[2]/label/span").click #Secondary					 
-						browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[3]/label/span").click #Tertiary
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[1]/div[3]/div/div[1]/label/span").click
+	@driver.find_element(id: 'cred_userid_inputtext').send_keys username # 'rhadevadmin@rhadev.onmicrosoft.com'
+	@driver.find_element(id: 'cred_password_inputtext').send_keys password # 'RHAdev9891'
+	@driver.find_element(id: 'cred_sign_in_button').click
+	sleep(1)
+	@driver.find_element(id: 'cred_sign_in_button').click
+end
 
-			#Relationship to Insured
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").click #Relationship to insured drop down
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").send_keys "Self" #enters a selection
-					browser.find_element(xpath: "//*[@id='insurance-form']/div[2]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+def logout
+	puts 'Logging out'
+	@driver.find_element(css: 'a.dropdown-toggle i.caret').click
+	@driver.find_element(css: 'a[href="/account/signout"]').click
+end
 
-			#Termination Date
-				browser.find_element(id: "TerminationDate").click
-					browser.find_element(id: "TerminationDate").send_keys "12/25/2015"
+def navigate_to_a_client(name)
+    @driver.find_element(css: "a[href=\"/clinical/clients\"]").click
+    @driver.find_element(id: "search").send_keys name
+    @driver.find_element(css: "input[value=\"Go\"]").click
+    raise "Client not found in list." unless @driver.find_element(link_text: name).displayed?
+    @driver.find_element(link_text: name).click
+end
 
-			#Effective Date
-				browser.find_element(id: "EffectiveFrom").click
-					browser.find_element(id: "EffectiveFrom").send_keys "02/11/2015"
+def navigate_to_add_payer_page
+    @driver.find_element(link_text: "Payers").click
+end
 
-			#MCO Funded
-				#browser.find_element(xpath: "//*[@id="insurance-form"]/div[3]/rha-mco-funding/div[1]/div/div[1]/label/span").click #Sets it to NO
-				browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[1]/div/div[2]/label/span").click #Sets it to YES
+def click_add_payer
+    @driver.find_element(css: "a[href*=\"/insurance/create\"]").click
+end
 
-					#If MCO Funded = YES
-						browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[2]/div[1]/div/div[1]/label/span").click #Type of MCO Funding = Medicaid
-						#browser.find_element(xpath: "//*[@id='insurance-form']/div[3]/rha-mco-funding/div[2]/div[1]/div/div[1]/label/span").click #Type of MCO Funding = State
+def fill_in_payer_info
+    payer_name_dropdown = @driver.find_element(id: "Payer_SelectedValue").find_element(xpath: "..").find_element(css: "input")
+    payer_name_dropdown.click
+    payer_name_dropdown.send_keys "Automationpayer Lastname"
+    payer_name_dropdown.send_keys :return
 
-						#If MCO = YES
-							browser.find_element(id: "McoFunding_MedicaidNumber").send_keys "0000001"
+    @driver.find_element(id: "PolicyNumber").send_keys "0000001"
 
-					#Saves Payer
-						browser.find_element(xpath: "//*[@id='insurance-form']/div[4]/ul/li[2]/button").click
+    @driver.find_element(css: "#Priority[value=\"Tertiary\"]").click
+    @driver.find_element(css: "#Priority[value=\"Secondary\"]").click
+    @driver.find_element(css: "#Priority[value=\"Primary\"]").click
 
-=begin
+    raise "Phone number should be disabled" if @driver.find_element(id: "PhoneNumber").enabled?
 
-	#wait.until(ExpectedConditions.elementToBeClickable(By.class "selectize-control"));
-	#/WebDriverWait wait = new WebDriverWait(webDriver, timeoutInSeconds);
-	#wait.until(ExpectedConditions.visibilityOfElementLocated(By.class "selectize-control"));/
-	#browser.find_element(link_text: "Images").click
-	#browser.find_elements(tag_name: "img").size
+    relationship_dropdown = @driver.find_element(id: "RelationshipToInsured").find_element(xpath: "..").find_element(css: "input")
+    relationship_dropdown.click
+    relationship_dropdown.send_keys "Self"
+    relationship_dropdown.send_keys :return
 
-		#Logout
-			browser.find_element(id: "signout-icon").click
+    @driver.find_element(id: "EffectiveFrom").clear
+    @driver.find_element(id: "EffectiveFrom").send_keys "01/01/2015"
+    @driver.find_element(id: "TerminationDate").clear
+    @driver.find_element(id: "TerminationDate").send_keys "12/31/2015"
 
-=end
+    @driver.find_element(css: "#McoFunding_Funded[value=\"No\"]").click
+    @driver.find_element(css: "#McoFunding_Funded[value=\"Yes\"]").click
 
-browser.close
+    raise "MCO Funding Type did not become visible." unless @driver.find_element(css: "label[for=\"McoFunding_FundingType\"]").displayed?
 
+    @driver.find_element(css: "#McoFunding_FundingType[value=\"State\"]").click
+    @driver.find_element(css: "#McoFunding_FundingType[value=\"Medicaid\"]").click
 
+    @driver.find_element(id: "McoFunding_MedicaidNumber").send_keys '%06d' % rand(6 ** 6) # random 6 digit number
+end
+
+def click_save
+    @driver.find_element(css: "button[type=\"submit\"].btn.btn-primary")
+end
+
+run do
+	# 1. Login
+	login USERNAME, PASSWORD
+
+    # 2. Add a payer
+    navigate_to_a_client "#{CLIENT_FIRST_NAME} #{CLIENT_LAST_NAME}"
+    navigate_to_add_payer_page
+    click_add_payer
+    fill_in_payer_info
+    # click_save
+
+	# 3. Logout
+	# logout
+end

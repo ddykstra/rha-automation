@@ -51,9 +51,10 @@ def logout
 end
 
 def navigate_to_a_client(name)
+    @driver.find_element(css: "a[href=\"/clinical/clients\"]").click
     @driver.find_element(id: "search").send_keys name
     @driver.find_element(css: "input[value=\"Go\"]").click
-    assert(@driver.find_element(link_text: name), "Client not found in list.")
+    raise "Client not found in list" unless @driver.find_element(link_text: name).disabled?
     @driver.find_element(link_text: name).click
 end
 
@@ -111,6 +112,6 @@ run do
     fill_in_referring_npi_info
     click_save
 
-	# 3. Profit
+	# 3. Logout
 	logout
 end

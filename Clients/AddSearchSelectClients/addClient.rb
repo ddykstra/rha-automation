@@ -8,7 +8,6 @@ tag name			:tag_name
 xpath				:xpath/
 
 require 'selenium-webdriver'
-require 'test/unit'
 
 	USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
 	PASSWORD = 'RHAdev9891'
@@ -187,7 +186,8 @@ require 'test/unit'
 		@driver.find_element(name: "search").click
 		@driver.find_element(name: "search").send_keys client_name
 		@driver.find_element(css: 'input[value=Go]').click
-		assert(@driver.find_element(link_text: client_name), "The Client name was not found in search.")
+
+		raise "The Client name was not found in search." unless @driver.find_element(link_text: client_name).displayed?
 	end
 
 	def logout
