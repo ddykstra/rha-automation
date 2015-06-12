@@ -1,7 +1,7 @@
 require 'selenium-webdriver'
 require 'json'
 
-BAR_DATA_FILE = "Data/bar_data.json"
+BAR_DATA_FILE = "Bar/Data/bar_data.json"
 
 USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
 PASSWORD = 'RHAdev9891'
@@ -50,7 +50,7 @@ end
 
 def build_name_reason_hash
     # TODO: paging?
-    
+
     first_names = @driver.find_elements(css: "table tbody tr td:nth-of-type(3)").map {
         |name| name.text
     }
@@ -71,7 +71,7 @@ def diff_data
 end
 
 def write_diff_to_file
-    File.open("Data/output.json", "w") do |f|
+    File.open("Bar/Data/output.json", "w") do |f|
         f.write(JSON.pretty_generate(@diff))
     end
 end
