@@ -10,7 +10,7 @@ xpath				:xpath/
 require 'selenium-webdriver'
 
 USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-PASSWORD = 'RHAdev9891'
+PASSWORD = 'RHAdev9892'
 ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
 CLIENT_FIRST_NAME = "Clement"
