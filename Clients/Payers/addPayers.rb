@@ -30,7 +30,7 @@ end
 def run
 	setup
 	yield
-	# teardown
+	teardown
 end
 
 def login(username,password)
@@ -51,7 +51,7 @@ end
 
 def navigate_to_a_client(name)
     @driver.find_element(css: "a[href=\"/clinical/clients\"]").click
-    @driver.find_element(id: "search").send_keys name
+    @driver.find_element(id: "Search").send_keys name
     @driver.find_element(css: "input[value=\"Go\"]").click
     raise "Client not found in list." unless @driver.find_element(link_text: name).displayed?
     @driver.find_element(link_text: name).click
@@ -113,8 +113,8 @@ run do
     navigate_to_add_payer_page
     click_add_payer
     fill_in_payer_info
-    # click_save
+    click_save
 
 	# 3. Logout
-	# logout
+	logout
 end

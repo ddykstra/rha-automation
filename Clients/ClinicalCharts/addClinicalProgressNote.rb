@@ -1,153 +1,138 @@
 /class name			:class_name			:class
-css selector		:css	 
-id					:id	 
+css selector		:css
+id					:id
 link text			:link_text			:link
-name				:name	 
-partial link text	:partial_link_text	 
-tag name			:tag_name	 
+name				:name
+partial link text	:partial_link_text
+tag name			:tag_name
 xpath				:xpath/
 
-#BROWSER: FIREFOX
-require "rubygems"
-require "selenium-webdriver"
- browser = Selenium::WebDriver.for :firefox
-  browser.get "https://rha.azurewebsites.net/"
-  #browser.window.resize_to(1680,1050)
-  #driver.manage.timeouts.implicit_wait = 10
-   browser.current_url
-	browser.title
+require 'selenium-webdriver'
 
-	#Login screen
-		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
-		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
-		browser.find_element(id: "cred_sign_in_button").click
-		sleep(1)
-		browser.find_element(id: "cred_sign_in_button").click
+USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
+PASSWORD = 'RHAdev9892'
+ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
-#Navigate to the Client' page, clicks Clinical Chart on left nav, and then clicks Progress Note
-		#Clicks Clients
-			browser.find_element(link_text: "Clients").click
-		#Searches and accesses a specific client
-			browser.find_element(id: "search").send_keys "Automation"
-				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
-					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+CLIENT_FIRST_NAME = "Clement"
+CLIENT_LAST_NAME = "Clarkson"
 
-				#Clicks Clinical Chart on the left nav
-					browser.find_element(link_text: "Clinical Chart").click
-sleep(1)
-				#Clicks Progress Note in form builder
-					browser.find_element(link_text: "Progress Note").click
+def setup
+	@driver = Selenium::WebDriver.for :firefox
+	@driver.navigate.to ENVIRONMENT_UNDER_TEST
+	@driver.manage.timeouts.implicit_wait = 10
+end
 
-				#Clicks Add Progress Note
-					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/div/div/a").click
+def teardown
+	puts "Test Completed."
+	@driver.quit
+end
 
-				#Is Progress Note billable switch - Uncomment if wanting to set it to NO
-					#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[1]/label[2]/span").click
+def run
+	setup
+	yield
+	# teardown
+end
 
-					#Service Date
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[1]/div/div/input").click
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[1]/div/div/input").send_keys "02/13/2015"
+def login(username,password)
+	puts 'Logging in'
 
-					#Location selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").click #Location drop down
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").send_keys "AddedByAutomationLocation1" #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[2]/div/select").send_keys :return #selects the selection
-					
-					#Program selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").click #Program drop down
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").send_keys "AddedByAutomationProgram1" #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[3]/div/select").send_keys :return #selects the selection
-					
-					#Place of Service selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").click #Place of Service drop down
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").send_keys "Automation Place" #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[4]/div/select").send_keys :return #selects the selection
+	@driver.find_element(id: 'cred_userid_inputtext').send_keys username # 'rhadevadmin@rhadev.onmicrosoft.com'
+	@driver.find_element(id: 'cred_password_inputtext').send_keys password # 'RHAdev9891'
+	@driver.find_element(id: 'cred_sign_in_button').click
+	sleep(1)
+	@driver.find_element(id: 'cred_sign_in_button').click
+end
 
-					#Contact Type radio buttons - Uncomment if needing to change to "Not to face to face"
-						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[5]/div/label[2]/span").click #Face to face
-							#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[2]/div[5]/div/label[3]/span").click #Not face to face	
+def logout
+	puts 'Logging out'
+	@driver.find_element(css: 'a.dropdown-toggle i.caret').click
+	@driver.find_element(css: 'a[href="/account/signout"]').click
+end
 
-					#Service Item selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").click #Place of Service drop down
-						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys "addedbyautomation" #enters a selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys :arrow_down #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[1]/div/select").send_keys :return #selects the selection
+def navigate_to_a_client(name)
+    @driver.find_element(css: "a[href=\"/clinical/clients\"]").click
+    @driver.find_element(id: "Search").send_keys name
+    @driver.find_element(css: "input[value=\"Go\"]").click
+    raise "Client not found in list" unless @driver.find_element(link_text: name).displayed?
+    @driver.find_element(link_text: name).click
+end
 
-					#Does the Service have an Authorization
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[2]/div/label[2]/span").click #YES
-						#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[2]/div/label[3]/span").click #NO
+def expand_clinical_charts
+    @driver.find_element(link_text: "Clinical Chart").click
+end
 
-					#Service Start Time
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").click #Place of Service drop down
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").send_keys "12:30pm" #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[3]/div/input").send_keys :return #selects the selection
+def click_progress_note
+    @driver.find_element(partial_link_text: "Progress Note").click
+end
 
-					#Service End Time
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").click #Place of Service drop down
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").send_keys "6:30pm" #enters a selection
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/div[3]/div[4]/div/input").send_keys :return #selects the selection
+def click_add_progress_note
+    @driver.find_element(partial_link_text: "Add Progress Note").click
+end
 
-				#Goals Tab
-					#Select and add Goals
-						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").click #Place of Service drop down
-						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").send_keys "" #enters a selection
-							#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[1]/div/select").send_keys :return #selects the selection
-					#Clicks Add
-						#browser.find_element(xpath: "//*[@id='goals-tab']/div/div[2]/button").click
+def select_is_billable
+    # toggle off then on
+    @driver.find_element(css: "input.checkbox-toggle[type=\"checkbox\"]")
+           .find_element(xpath: "..")
+           .find_element(css: "span").click
+    @driver.find_element(css: "input.checkbox-toggle[type=\"checkbox\"]")
+           .find_element(xpath: "..")
+           .find_element(css: "span").click
+end
 
-				#Interventions Tab
+def fill_in_note_data
+    puts("starting fill in data")
+    @driver.find_element(xpath: "//label[contains(., \"Service date\")]/..//input").send_keys DateTime.now.strftime('%m/%d/%Y')
 
+    @driver.find_element(xpath: "//label[contains(., \"Location\")]/..//input").click
+    @driver.find_element(xpath: "//label[contains(., \"Location\")]/..//div[@data-selectable]").click
 
-				#Outcomes Tab
+    @driver.find_element(xpath: "//label[contains(., \"Program\")]/..//input").click
+    @driver.find_element(xpath: "//label[contains(., \"Program\")]/..//div[@data-selectable]").click
 
+    @driver.find_element(xpath: "//label[contains(., \"Place of service\")]/..//input").click
+    @driver.find_element(xpath: "//label[contains(., \"Place of service\")]/..//div[@data-selectable]").click
 
-				#Plan Tab
+    @driver.find_element(xpath: "//label[contains(., \"Contact type\")]/..//span").click # face to face
 
+    @driver.find_element(xpath: "//label[contains(., \"Service item\")]/..//input").click
+    @driver.find_element(xpath: "//label[contains(., \"Service item\")]/..//div[@data-selectable]").click
 
-				#Comments Tab
+    @driver.find_element(xpath: "//label[contains(., \"Does service have authorization\")]/..//span").click
 
+    @driver.find_element(xpath: "//label[contains(., \"Service start time\")]/..//input").send_keys "12:01am"
+    @driver.find_element(xpath: "//label[contains(., \"Service start time\")]/..//input").send_keys :return
 
-				#E-Pin
-					#Enters epin
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
+    @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys "1:01am"
+    @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys :return
+end
 
-#SAVES PROGRESS NOTE DRAFT
-						#Saves Draft
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[2]").click
-sleep(1)
+def input_e_pin
+    @driver.find_element(css: "input[placeholder=\"E-Pin\"]").send_keys "1234"
+end
 
-		#Accesses the new drafted Progress Note
-				#Clicks Progress Note in form builder
-					browser.find_element(link_text: "Progress Note").click
+def click_submit_for_approval
+    @driver.find_element(xpath: "//button[contains(., \"Submit For Approval\")]").click
+end
 
-				#Edits the Progress Note
-					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/table/tbody/tr/td[7]/div[1]/a/i").click
-sleep(2)
-				#E-Pin
-					#Enters epin
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
+run do
+	# 1. Login
+	login USERNAME, PASSWORD
 
-#SUBMITS PROGRESS NOTE FOR APPROVAL
-						#Submits for Approval
-							browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[3]").click
-sleep(1)
-		
-		#Accesses the new submitted Progress Note
-				#Clicks Progress Note in form builder
-					browser.find_element(link_text: "Progress Note").click
+    # 2. Navigate to a client
+    navigate_to_a_client "#{CLIENT_FIRST_NAME} #{CLIENT_LAST_NAME}"
+    expand_clinical_charts
+    click_progress_note
+    click_add_progress_note
 
-				#Edits the Progress Note
-					browser.find_element(xpath: "/html/body/div/div[2]/div/div[3]/table/tbody/tr[1]/td[7]/div[1]/a/i").click
-sleep(2)
-				#E-Pin
-					#Enters epin
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/input").send_keys "1234"
-sleep(1)
-#APPROVES PROGRESS NOTE
-					#Approves Progress Note
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button[3]").click
-sleep(1)
+    # 3. Fill in data
+    select_is_billable
+    fill_in_note_data
 
-browser.close
+    # 4. save
+    input_e_pin
+    click_submit_for_approval
 
+    # 5. Logout
 
+	# logout
+end
