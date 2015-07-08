@@ -30,7 +30,7 @@ end
 def run
 	setup
 	yield
-	# teardown
+	teardown
 end
 
 def login(username,password)
@@ -114,6 +114,25 @@ def click_submit_for_approval
     @driver.find_element(xpath: "//button[contains(., \"Submit For Approval\")]").click
 end
 
+def access_newly_created_note
+    @driver.find_element(css: "i.fa.fa-pencil").click
+end
+
+def check_qa_boxes
+    @driver.find_element(css: "input[name=\"purpose-of-contact-qa\"]").click
+    @driver.find_element(css: "input[name=\"valid-target-date-qa\"]").click
+    @driver.find_element(css: "input[name=\"intervention-qa\"]").click
+    @driver.find_element(css: "input[name=\"no-passive-interventions-qa\"]").click
+    @driver.find_element(css: "input[name=\"effectiveness-qa\"]").click
+    @driver.find_element(css: "input[name=\"documentation-qa\"]").click
+    @driver.find_element(css: "input[name=\"service-notes-qa\"]").click
+    @driver.find_element(css: "input[name=\"risk-qa\"]").click
+end
+
+def click_approve
+    @driver.find_element(xpath: "//button[contains(., \"Approve\")]").click
+end
+
 run do
 	# 1. Login
 	login USERNAME, PASSWORD
@@ -132,7 +151,12 @@ run do
     input_e_pin
     click_submit_for_approval
 
-    # 5. Logout
+    # 5. QA Approval
+    access_newly_created_note
+    check_qa_boxes
+    input_e_pin
+    click_approve
 
-	# logout
+    # 6. Logout
+	logout
 end
