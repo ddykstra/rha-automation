@@ -13,8 +13,8 @@ USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
 PASSWORD = 'RHAdev9892'
 ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
-CLIENT_FIRST_NAME = "Clement"
-CLIENT_LAST_NAME = "Clarkson"
+CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
+CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
 
 def setup
 	@driver = Selenium::WebDriver.for :firefox

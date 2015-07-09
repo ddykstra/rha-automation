@@ -9,11 +9,11 @@ xpath				:xpath/
 
 require "selenium-webdriver"
 
-	USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-	PASSWORD = 'RHAdev9891'
-	ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
-	CLIENT_FIRST_NAME = "Automationfirstname1"
-	CLIENT_LAST_NAME = "Automationlastname1"
+	USERNAME = ENV["USERNAME"]
+	PASSWORD = ENV["PASSWORD"]
+	ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
+	CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
+	CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
 
 	def setup
 		@driver = Selenium::WebDriver.for :firefox
@@ -55,9 +55,9 @@ require "selenium-webdriver"
 
 	def navigate_to_a_client(name)
 		puts "Navigating to a Client: #{name}"
-		@driver.find_element(id: 'search').send_keys name
+		@driver.find_element(id: 'Search').send_keys name
 		@driver.find_element(css: 'input[value=Go]').click
-		@driver.find_element(link_text:  "#{name}").click
+		@driver.find_element(link_text:  name).click
 	end
 
 	def navigate_to_assignments_page
@@ -67,7 +67,7 @@ require "selenium-webdriver"
 
 	def click_add_assignment
 		puts 'Clicking on "Add Assignment"'
-		@driver.find_element(css: "a[href~=\"assignments/create\"]").click
+		@driver.find_element(css: "a[href*=\"assignments/create\"]").click
 	end
 
 	def fill_in_associated_referral
@@ -96,14 +96,14 @@ require "selenium-webdriver"
 
 	def fill_in_admit_time
 		puts 'Filling in Admit Time'
-		@driver.find_element(id: "AdmitTime").click
-		@driver.find_element(id: "AdmitTime").send_keys "12:00pm"
+		@driver.find_element(id: "AssignmentInfo_AdmitTime").click
+		@driver.find_element(id: "AssignmentInfo_AdmitTime").send_keys "12:00pm"
 	end
 
 	def fill_in_admit_date
 		puts 'Filling in Admit Date'
-		@driver.find_element(id: "AdmitDate").click
-		@driver.find_element(id: "AdmitDate").send_keys "01/10/2015"
+		@driver.find_element(id: "AssignmentInfo_AdmitDate").click
+		@driver.find_element(id: "AssignmentInfo_AdmitDate").send_keys "01/10/2015"
 	end
 
 	def fill_in_staff_type
@@ -125,14 +125,15 @@ require "selenium-webdriver"
 
 	def fill_in_staff_assignment_date
 		puts 'Filling in Staff Assignment Date'
-		@driver.find_element(id: "StaffAssignmentDate").click
-		@driver.find_element(id: "StaffAssignmentDate").send_keys "01/10/2015"
-		@driver.find_element(id: "StaffAssignmentDate").send_keys "01/10/2015"
+		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").click
+		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys "01/10/2015"
+		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys "01/10/2015"
 	end
 
 	def save_assignment
 		puts 'Clicking "Save"'
 		@driver.find_element(css: 'button[type="submit"].btn.btn-primary').click
+		"Assignment not saved." unless @driver.find_element(xpath: "//h1[contains(., \"Assignments List\")]").displayed?
 	end
 
 	run do

@@ -9,11 +9,14 @@ xpath				:xpath/
 
 require "selenium-webdriver"
 
-	USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-	PASSWORD = 'RHAdev9891'
-	ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
+	USERNAME = ENV["USERNAME"]
+	PASSWORD = ENV["PASSWORD"]
+	ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
 
     INSURANCE_PAYER = "Automationpayer Lastname1"
+
+	CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
+	CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
 
 	def setup
 		@driver = Selenium::WebDriver.for :firefox
@@ -55,7 +58,7 @@ require "selenium-webdriver"
 
     def navigate_to_a_client(name)
 		puts "Navigating to a Client: #{name}"
-		@driver.find_element(id: 'search').send_keys name
+		@driver.find_element(id: 'Search').send_keys name
 		@driver.find_element(css: 'input[value=Go]').click
 		@driver.find_element(link_text:  name).click
 	end
@@ -67,12 +70,12 @@ require "selenium-webdriver"
 
     def click_add_authorization
         puts 'Clicking Add Authorization'
-        @driver.find_element(css: "a[href~=\"authorizations/create\"]").click
+        @driver.find_element(css: "a[href*=\"authorizations/create\"]").click
     end
 
     def set_authorization_type(type)
         puts "Setting authorization type to #{type}"
-        @driver.find_element(css: "input[value=\"#{type}\"]")
+        @driver.find_element(css: "input[value=\"#{type}\"]").click
     end
 
     def fill_in_insurance
@@ -158,7 +161,7 @@ require "selenium-webdriver"
 
         # 2. Navigate to Authorizations
         navigate_to_clients_page
-        navigate_to_a_client 'Lloyd Christmas'
+        navigate_to_a_client "#{CLIENT_FIRST_NAME} #{CLIENT_LAST_NAME}"
         navigate_to_authorizations
 
         # 3. Add an Authorization

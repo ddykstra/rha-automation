@@ -9,12 +9,12 @@ xpath				:xpath/
 
 require 'selenium-webdriver'
 
-USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-PASSWORD = 'RHAdev9892'
-ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
+USERNAME = ENV["USERNAME"]
+PASSWORD = ENV["PASSWORD"]
+ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
 
-CLIENT_FIRST_NAME = "Clement"
-CLIENT_LAST_NAME = "Clarkson"
+CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
+CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
 
 def setup
 	@driver = Selenium::WebDriver.for :firefox
@@ -101,7 +101,8 @@ def fill_in_payer_info
 end
 
 def click_save
-    @driver.find_element(css: "button[type=\"submit\"].btn.btn-primary")
+    @driver.find_element(css: "button[type=\"submit\"].btn.btn-primary").click
+	"Payer not saved." unless @driver.find_element(xpath: "//h1[contains(., \"Payer Management\")]").displayed?
 end
 
 run do

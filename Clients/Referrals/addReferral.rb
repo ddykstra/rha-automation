@@ -10,12 +10,12 @@ xpath				:xpath/
 require 'selenium-webdriver'
 require 'test/unit'
 
-USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-PASSWORD = 'RHAdev9891'
-ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
+USERNAME = ENV["USERNAME"]
+PASSWORD = ENV["PASSWORD"]
+ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
 
-CLIENT_FIRST_NAME = "Angela"
-CLIENT_LAST_NAME = "Renard"
+CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
+CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
 
 def setup
 	@driver = Selenium::WebDriver.for :firefox
@@ -54,7 +54,7 @@ def navigate_to_a_client(name)
     @driver.find_element(css: "a[href=\"/clinical/clients\"]").click
     @driver.find_element(id: "Search").send_keys name
     @driver.find_element(css: "input[value=\"Go\"]").click
-    raise "Client not found in list" unless @driver.find_element(link_text: name).disabled?
+    raise "Client not found in list" unless @driver.find_element(link_text: name).displayed?
     @driver.find_element(link_text: name).click
 end
 
@@ -63,7 +63,7 @@ def navigate_to_add_referral_page
 end
 
 def click_add_referral
-    @driver.find_element(css: "a[href~=\"referrals/create\"]").click
+    @driver.find_element(css: "a[href*=\"/referrals/create\"]").click
 end
 
 def fill_in_referral_info
