@@ -9,9 +9,9 @@ xpath				:xpath/
 
 require 'selenium-webdriver'
 
-USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-PASSWORD = 'RHAdev9892'
-ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
+USERNAME = ENV["USERNAME"]
+PASSWORD = ENV["PASSWORD"]
+ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
 
 CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
 CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
