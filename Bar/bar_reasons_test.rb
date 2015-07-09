@@ -4,7 +4,7 @@ require 'json'
 BAR_DATA_FILE = "Bar/Data/bar_data.json"
 
 USERNAME = 'rhadevadmin@rhadev.onmicrosoft.com'
-PASSWORD = 'RHAdev9891'
+PASSWORD = 'RHAdev9892'
 ENVIRONMENT_UNDER_TEST = 'https://rha.azurewebsites.net/'
 
 def setup
