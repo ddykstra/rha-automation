@@ -2,17 +2,27 @@ DIR=$(pwd)
 export USERNAME='rhadevadmin@rhadev.onmicrosoft.com'
 export PASSWORD='RHAdev9892'
 export ENVIRONMENT_UNDER_TEST='https://rha.azurewebsites.net/'
-export CLIENT_FIRST_NAME='Armando'
-export CLIENT_LAST_NAME='Ryan'
-ruby /Users/jakejohnson/Development/rha-automation/Clients/AddSearchSelectClients/addClient.rb &
+export CLIENT_FIRST_NAME='Mario'
+export CLIENT_LAST_NAME='Gordon'
+cd Clients/AddSearchSelectClients/
+ruby addClient.rb &
+cd $DIR
 wait
-ruby /Users/jakejohnson/Development/rha-automation/Clients/Referrals/addReferral.rb &
+cd Clients/Referrals/
+ruby addReferral.rb &
+cd $DIR
 wait
-ruby /Users/jakejohnson/Development/rha-automation/Clients/Assignments/addAssignments.rb &
+cd Clients/Assignments/
+ruby addAssignments.rb &
+cd $DIR
 wait
-ruby /Users/jakejohnson/Development/rha-automation/Clients/Payers/addPayers.rb &
+cd Clients/Payers/
+ruby addPayers.rb &
+cd $DIR
 wait
-ruby /Users/jakejohnson/Development/rha-automation/Clients/Authorizations/addPendingManagedAuthorization.rb &
+cd Clients/Authorizations/
+ruby addPendingManagedAuthorization.rb &
+cd $DIR
 wait
 cd Clients/ClinicalCharts/
 ruby addClinicalProgressNote.rb &
