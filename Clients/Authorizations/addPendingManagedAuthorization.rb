@@ -47,7 +47,7 @@ require "selenium-webdriver"
 
     def logout
 		puts 'Logging out'
-		@driver.find_element(css: 'li.user.dropdown').click
+		@driver.find_element(css: 'a.dropdown-toggle i.caret').click
 		@driver.find_element(css: 'a[href="/account/signout"]').click
 	end
 
@@ -124,41 +124,6 @@ require "selenium-webdriver"
         sleep(1)
     end
 
-	def access_the_added_authorization
-		@driver.find_element(link_text: INSURANCE_PAYER).click
-	end
-
-    def enter_info_for_received_authorization
-        #Enters info for received authorization
-        @driver.find_element(id: "Number").send_keys "00001"
-        #Status
-        insurance_dropdown = @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input")
-        insurance_dropdown.click
-        insurance_dropdown.send_keys "Active"
-        insurance_dropdown.send_keys :return
-        #Units Authorized
-        units_authorized_field = @driver.find_element(id: "UnitsAuthorized")
-        units_authorized_field.click
-        units_authorized_field.click
-        units_authorized_field.send_keys "20"
-        #Date Recieved
-        @driver.find_element(id: "DateReceived").click
-        @driver.find_element(id: "DateReceived").send_keys "02/15/2015"
-    end
-
-    def enter_limit
-        #Limits
-        @driver.find_element(id: "VueLimit_Value").click #Field focus units requested
-        @driver.find_element(id: "VueLimit_Value").click #Field focus units requested
-        @driver.find_element(id: "VueLimit_Value").send_keys "30" #enters limits amount
-        #Status
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").click #Insurance drop down
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys "Day" #enters a selection
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
-        #Adds Limit
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[2]/div/a").click
-    end
-
     run do
         # 1. Login
 		login USERNAME, PASSWORD
@@ -181,13 +146,6 @@ require "selenium-webdriver"
         fill_in_referring_npi_info
         save_authorization
 
-        # 4. Receive Authorization
-        navigate_to_authorizations
-        access_the_added_authorization
-        enter_info_for_received_authorization
-        enter_limit
-        save_authorization
-
-        # 5. Logout
+        # 4. Logout
         logout
     end
