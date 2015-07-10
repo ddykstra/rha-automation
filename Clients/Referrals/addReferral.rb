@@ -9,6 +9,7 @@ xpath				:xpath/
 
 require 'selenium-webdriver'
 require 'test/unit'
+require 'colorize'
 
 USERNAME = ENV["USERNAME"]
 PASSWORD = ENV["PASSWORD"]
@@ -24,7 +25,7 @@ def setup
 end
 
 def teardown
-	puts "Test Completed."
+	puts "Add Referral to Client Test Completed.".green
 	@driver.quit
 end
 

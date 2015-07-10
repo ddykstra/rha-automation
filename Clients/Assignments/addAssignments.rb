@@ -8,6 +8,7 @@ tag name			:tag_name
 xpath				:xpath/
 
 require "selenium-webdriver"
+require 'colorize'
 
 	USERNAME = ENV["USERNAME"]
 	PASSWORD = ENV["PASSWORD"]
@@ -23,6 +24,7 @@ require "selenium-webdriver"
 	end
 
 	def teardown
+		puts "Add Assignment to Client Test Completed.".green
 		@driver.quit
 	end
 

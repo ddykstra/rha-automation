@@ -8,6 +8,7 @@ tag name			:tag_name
 xpath				:xpath/
 
 require 'selenium-webdriver'
+require 'colorize'
 
 USERNAME = ENV["USERNAME"]
 PASSWORD = ENV["PASSWORD"]
@@ -23,7 +24,7 @@ def setup
 end
 
 def teardown
-	puts "Test Completed."
+	puts "Add Clinical Progress Note Test Completed.".green
 	@driver.quit
 end
 
@@ -99,10 +100,10 @@ def fill_in_note_data
 
     @driver.find_element(xpath: "//label[contains(., \"Does service have authorization\")]/..//span").click
 
-    @driver.find_element(xpath: "//label[contains(., \"Service start time\")]/..//input").send_keys "12:01am"
+    @driver.find_element(xpath: "//label[contains(., \"Service start time\")]/..//input").send_keys Time.now.strftime("%I:%M%p")
     @driver.find_element(xpath: "//label[contains(., \"Service start time\")]/..//input").send_keys :return
 
-    @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys "1:01am"
+    @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys (Time.now + (60)).strftime("%I:%M%p")
     @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys :return
 end
 

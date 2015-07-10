@@ -1,4 +1,5 @@
 require 'selenium-webdriver'
+require 'colorize'
 
 USERNAME = ENV["USERNAME"] || 'rhadevadmin@rhadev.onmicrosoft.com'
 PASSWORD = ENV["PASSWORD"] || 'RHAdev9892'
@@ -15,7 +16,7 @@ def setup
 end
 
 def teardown
-	puts "Test Completed."
+	puts "Pending Authorization Bar Reason Test Completed.".green
 	@driver.quit
 end
 
@@ -76,7 +77,7 @@ def create_query
 end
 
 def verify_at_least_one_row
-    raise "Less than one row returned from query" unless @driver.find_elements(css: "td").length > 1
+    raise "Pending Authorization Bar Reason Test Failed".red unless @driver.find_elements(css: "td").length > 1
 end
 
 run do
