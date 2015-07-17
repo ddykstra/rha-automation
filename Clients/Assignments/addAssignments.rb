@@ -128,8 +128,8 @@ require 'colorize'
 	def fill_in_staff_assignment_date
 		puts 'Filling in Staff Assignment Date'
 		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").click
-		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys "01/10/2015"
-		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys "01/10/2015"
+		@driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys DateTime.now.strftime('%m/%d/%Y')
+		# @driver.find_element(id: "StaffInfo_StaffAssignmentDate").send_keys "01/10/2015"
 	end
 
 	def save_assignment
