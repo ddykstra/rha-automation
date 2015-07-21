@@ -63,7 +63,7 @@ def expand_clinical_charts
 end
 
 def click_progress_note
-    @driver.find_element(partial_link_text: "Progress Note").click
+    @driver.find_element(xpath: "//a[contains(., \"Progress Notes w/ Multiple\")]").click
 end
 
 def click_add_progress_note
@@ -121,13 +121,6 @@ end
 
 def check_qa_boxes
     @driver.find_element(css: "input[name=\"purpose-of-contact-qa\"]").click
-    # @driver.find_element(css: "input[name=\"valid-target-date-qa\"]").click
-    # @driver.find_element(css: "input[name=\"intervention-qa\"]").click
-    # @driver.find_element(css: "input[name=\"no-passive-interventions-qa\"]").click
-    # @driver.find_element(css: "input[name=\"effectiveness-qa\"]").click
-    # @driver.find_element(css: "input[name=\"documentation-qa\"]").click
-    # @driver.find_element(css: "input[name=\"service-notes-qa\"]").click
-    # @driver.find_element(css: "input[name=\"risk-qa\"]").click
 end
 
 def click_approve
