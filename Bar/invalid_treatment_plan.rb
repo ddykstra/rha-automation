@@ -14,8 +14,9 @@ USERNAME = ENV["USERNAME"]
 PASSWORD = ENV["PASSWORD"]
 ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"]
 
-CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"]
-CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"]
+CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"] || "Lars"
+CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"] || "Ulrich"
+REASON_UNDER_TEST = ENV["REASON_UNDER_TEST"] || "Invalid Treatment Plan"
 
 def setup
 	@driver = Selenium::WebDriver.for :firefox
@@ -107,6 +108,12 @@ def fill_in_note_data
     @driver.find_element(xpath: "//label[contains(., \"Service end time\")]/..//input").send_keys :return
 end
 
+def add_other_goal
+    puts("adding other goal")
+    @driver.find_element(xpath: "//label[contains(., \"If other, please specify:\")]/..//input").send_keys("a goal.")
+    @driver.find_element(xpath: "//button[contains(., \"Add\")]").click
+end
+
 def input_e_pin
     @driver.find_element(css: "input[placeholder=\"E-Pin\"]").send_keys "1234"
 end
@@ -134,6 +141,26 @@ def click_approve
     @driver.find_element(xpath: "//button[contains(., \"Approve\")]").click
 end
 
+def navigate_to_bar
+    @driver.find_element(link_text: "Reimbursement").click
+end
+
+def click_create_query
+    @driver.find_element(xpath: "//button[contains(., \"Create Query\")]").click
+end
+
+def create_query
+    @driver.find_element(id: "First").send_keys(CLIENT_FIRST_NAME)
+    @driver.find_element(id: "Last").send_keys(CLIENT_LAST_NAME)
+    @driver.find_element(xpath: "//*[@id=\"Reason\"]/..//input").send_keys(REASON_UNDER_TEST)
+    @driver.find_element(xpath: "//*[@id=\"Reason\"]/..//input").send_keys(:return)
+    @driver.find_element(xpath: "//button[contains(., \"Submit Query\")]").click
+end
+
+def verify_at_least_one_row
+    raise "Pending Authorization Bar Reason Test Failed".red unless @driver.find_elements(css: "td").length > 1
+end
+
 run do
 	# 1. Login
 	login USERNAME, PASSWORD
@@ -147,6 +174,7 @@ run do
     # 3. Fill in data
     select_is_billable
     fill_in_note_data
+    add_other_goal
 
     # 4. save
     input_e_pin
@@ -158,6 +186,12 @@ run do
     input_e_pin
     click_approve
 
-    # 6. Logout
+    # 6. Go to bar and verify invalid treatment plan
+    navigate_to_bar
+    click_create_query
+    create_query
+    verify_at_least_one_row
+
+    # 7. Logout
 	logout
 end
