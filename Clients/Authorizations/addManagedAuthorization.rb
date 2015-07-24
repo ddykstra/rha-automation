@@ -130,33 +130,32 @@ require "selenium-webdriver"
 
     def enter_info_for_received_authorization
         #Enters info for received authorization
-        @driver.find_element(id: "Number").send_keys "00001"
+        @driver.find_element(id: "ReceiveAuthorization_Number").send_keys "00001"
         #Status
-        insurance_dropdown = @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[1]/div[3]/div/div/div[1]/input")
+        insurance_dropdown = @driver.find_element(xpath: "//select[@id=\"ReceiveAuthorization_Status_SelectedValue\"]/..//input")
         insurance_dropdown.click
         insurance_dropdown.send_keys "Active"
         insurance_dropdown.send_keys :return
         #Units Authorized
-        units_authorized_field = @driver.find_element(id: "UnitsAuthorized")
+        units_authorized_field = @driver.find_element(id: "ReceiveAuthorization_UnitsAuthorized")
         units_authorized_field.click
-        units_authorized_field.click
-        units_authorized_field.send_keys "20"
+        units_authorized_field.send_keys "10000"
         #Date Recieved
-        @driver.find_element(id: "DateReceived").click
-        @driver.find_element(id: "DateReceived").send_keys "02/15/2015"
+        @driver.find_element(id: "ReceiveAuthorization_DateReceived").click
+        @driver.find_element(id: "ReceiveAuthorization_DateReceived").send_keys(DateTime.now.strftime('%m/%d/%Y'))
     end
 
     def enter_limit
         #Limits
         @driver.find_element(id: "VueLimit_Value").click #Field focus units requested
-        @driver.find_element(id: "VueLimit_Value").click #Field focus units requested
-        @driver.find_element(id: "VueLimit_Value").send_keys "30" #enters limits amount
+        @driver.find_element(id: "VueLimit_Value").send_keys "1000" #enters limits amount
         #Status
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").click #Insurance drop down
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys "Day" #enters a selection
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[1]/div[2]/div/div/div[1]/input").send_keys :return #selects the selection
+		limits_per = @driver.find_element(xpath: "//select[@id=\"VueLimit_Period\"]/..//input")
+		limits_per.click
+		limits_per.send_keys "Day"
+		limits_per.send_keys :return
         #Adds Limit
-        @driver.find_element(xpath: "//*[@id='authorization-form']/section[2]/div[2]/rha-limits/div/div[2]/div/a").click
+        @driver.find_element(xpath: "//button[contains(., \"Add Limit\")]").click
     end
 
     run do
