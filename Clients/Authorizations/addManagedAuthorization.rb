@@ -155,7 +155,7 @@ require "selenium-webdriver"
 		limits_per.send_keys "Day"
 		limits_per.send_keys :return
         #Adds Limit
-        @driver.find_element(xpath: "//button[contains(., \"Add Limit\")]").click
+        @driver.find_element(xpath: "//a[contains(., \"Add Limit\")]").click
     end
 
     run do
