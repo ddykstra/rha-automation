@@ -79,9 +79,10 @@ require "selenium-webdriver"
     end
 
     def fill_in_insurance
-        @driver.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").click #Insurance drop down
-        @driver.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys INSURANCE_PAYER #enters a selection
-        @driver.find_element(xpath: "//*[@id='request-info']/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+		selector = xpath: "//*[@id='Authorization_Insurance_SelectedValue']/..//input"
+		@driver.find_element(selector).click
+		@driver.find_element(selector).send_keys INSURANCE_PAYER
+		@dirver.find_element(selector).send_keys :return
     end
 
     def fill_in_request_date
@@ -106,21 +107,23 @@ require "selenium-webdriver"
     end
 
     def fill_in_service
-        @driver.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").click #Insurance drop down
-        @driver.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").send_keys "HCPCS - AddedByAutomationService1" #enters a selection
-        @driver.find_element(xpath: "//*[@id='unbundled-services']/div/div/div/div[1]/input").send_keys :return #selects the selection
+		selector = xpath: "//*[@id='Authorization_UnbundledService_Service_SelectedValue']/..//input"
+		@driver.find_element(selector).click
+		@driver.find_element(selector).send_keys "HCPCS - AddedByAutomationService1"
+		@driver.find_element(selector).send_keys :return
         sleep(1)
     end
 
     def fill_in_referring_npi_info
-        @driver.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").click #Referring Provider drop down
-        @driver.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").send_keys "Referralautomation" #enters a selection
-        @driver.find_element(xpath: "//*[@id='referring-provider']/section/div/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+		selector = xpath: "//*[@id='Authorization_Referrer_Provider_SelectedValue']/..//input"
+		@driver.find_element(selector).click
+		@driver.find_element(selector).send_keys "Referralautomation"
+		@driver.find_element(selector).send_keys :return
         sleep(1)
     end
 
     def save_authorization
-        @driver.find_element(xpath: "//*[@id='authorization-form']/div[3]/ul/li[2]/button").click
+		@driver.find_element(xpath: "//button[contains(., \"Save\")]").click
         sleep(1)
     end
 
