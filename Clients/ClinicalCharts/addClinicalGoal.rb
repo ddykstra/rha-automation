@@ -1,73 +1,143 @@
 /class name			:class_name			:class
-css selector		:css	 
-id					:id	 
+css selector		:css
+id					:id
 link text			:link_text			:link
-name				:name	 
-partial link text	:partial_link_text	 
-tag name			:tag_name	 
+name				:name
+partial link text	:partial_link_text
+tag name			:tag_name
 xpath				:xpath/
 
-#BROWSER: FIREFOX
-require "rubygems"
-require "selenium-webdriver"
- browser = Selenium::WebDriver.for :firefox
-  browser.get "https://rha.azurewebsites.net/"
-  #browser.window.resize_to(1680,1050)
-  #driver.manage.timeouts.implicit_wait = 10
-   browser.current_url
-	browser.title
+require 'selenium-webdriver'
+require 'colorize'
 
-	#Login screen
-		browser.find_element(id: "cred_userid_inputtext").send_keys "rhadevadmin@rhadev.onmicrosoft.com"
-		browser.find_element(id: "cred_password_inputtext").send_keys "RHAdev989"
-		browser.find_element(id: "cred_sign_in_button").click
-		sleep(1)
-		browser.find_element(id: "cred_sign_in_button").click
+USERNAME = ENV["USERNAME"] || 'rhadevadmin@rhadev.onmicrosoft.com'
+PASSWORD = ENV["PASSWORD"] || 'RHAdev9892'
+ENVIRONMENT_UNDER_TEST = ENV["ENVIRONMENT_UNDER_TEST"] || 'https://rha.azurewebsites.net/'
+CLIENT_FIRST_NAME = ENV["CLIENT_FIRST_NAME"] || "Leona"
+CLIENT_LAST_NAME = ENV["CLIENT_LAST_NAME"] || "Mason"
 
-	#Navigate to the Clients' page, clicks Clinical Chart on left nav, and then clicks Goals
-		#Clicks Clients
-			browser.find_element(link_text: "Clients").click
-		#Searches and accesses a specific client
-			browser.find_element(id: "search").send_keys "Automation"
-				browser.find_element(xpath: "/html/body/div[1]/div/div/form/div[2]/div/div/span/input").click
-					browser.find_element(link_text: "Automationfirstname1 Automationlastname1").click
+def setup
+	@driver = Selenium::WebDriver.for :firefox
+	@driver.navigate.to ENVIRONMENT_UNDER_TEST
+	@driver.manage.timeouts.implicit_wait = 10
+end
 
-				#Clicks Clinical Chart on the left nav
-					browser.find_element(link_text: "Clinical Chart").click
-sleep(1)
-				#Clicks Goals in form builder
-					browser.find_element(link_text: "Goals").click
+def teardown
+	puts "Test Completed."
+	@driver.quit
+end
 
-				#Clicks Add Goals
-					browser.find_element(xpath: "/html/body/div[1]/div[2]/div/div[3]/div/div/a").click
-			
-				#Goal UDO selection
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]").click #Insurance drop down
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]/input").send_keys "Automation Goals" #enters a selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[1]/div/div/div[1]/input").send_keys :return #selects the selection
+def run
+	setup
+	yield
+	teardown
+end
 
-				#Other Goal, please specify - Uncomment if goal type is Other
-					#browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[1]/div[2]/div/input").send_keys "Other Goal Type"
+def login(username,password)
+	puts 'Logging in'
 
-				#Goal Review Date
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[2]/div/div/input").click
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[2]/div/div/input").send_keys "02/13/2015"
+	@driver.find_element(id: 'cred_userid_inputtext').send_keys username # 'rhadevadmin@rhadev.onmicrosoft.com'
+	@driver.find_element(id: 'cred_password_inputtext').send_keys password # 'RHAdev9891'
+	@driver.find_element(id: 'cred_sign_in_button').click
+	sleep(1)
+	@driver.find_element(id: 'cred_sign_in_button').click
+end
 
-				#Target Date
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[1]/div/div/input").click
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[1]/div/div/input").send_keys "12/13/2015"
+def logout
+	puts 'Logging out'
+	@driver.find_element(css: 'a.dropdown-toggle i.caret').click
+	@driver.find_element(css: 'a[href="/account/signout"]').click
+end
 
-				#Status Code selection
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]").click #Insurance drop down
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]/input").send_keys "Revised" #enters a selection
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[2]/div[3]/div/div/div[1]/input").send_keys :return #selects the selection
+def navigate_to_clients_page
+    @driver.find_element(link_text: 'Clients').click
+end
 
-				#Goal progeress open text area
-					browser.find_element(xpath: "//*[@id='fb-form-builder']/div/fb-disp-form/form/div/fb-disp-page/div/fb-children/div/div/stack-repeater-base/div/div/div/div[3]/div/div/textarea").send_keys "This goals needs more work"
+def navigate_to_a_client(name)
+    puts "Navigating to a Client: #{name}"
+    @driver.find_element(id: 'Search').send_keys name
+    @driver.find_element(css: 'input[value=Go]').click
+    @driver.find_element(link_text:  name).click
+end
 
-					#Saves Goal
-						browser.find_element(xpath: "//*[@id='fb-form-builder']/footer/button").click
+def click_clinical_chart
+    @driver.find_element(link_text: 'Clinical Chart').click
+end
 
-browser.close
+def click_goals
+    @driver.find_element(xpath: '//a[contains(., "Goals")]').click
+end
 
+def click_add_goal
+    @driver.find_element(xpath: '//a[contains(., "Add")]').click
+end
 
+def add_long_term_goal
+    @driver.find_element(id: 'new-long-term-goal-name').send_keys('Automation Long Term Goal')
+    @driver.find_element(xpath: '//button[contains(., "Add Long Term Goal")]').click
+end
+
+def fill_in_long_term_goal_details
+    @driver.find_element(xpath: '//label[contains(., "Long range outcome")]/..//textarea').send_keys("Automation Range Outcome")
+    @driver.find_element(xpath: '//label[contains(., "Where am I now")]/..//textarea').send_keys("Automation where am I now?")
+end
+
+def add_short_term_goal
+    goal_selector = {xpath: '//*[@id="short-term-goal-clinical-goal-0"]/..//input'}
+    @driver.find_element(goal_selector).click
+    @driver.find_element(goal_selector).send_keys('Adult Client Improve financial successes')
+    @driver.find_element(goal_selector).send_keys(:return)
+
+    #use a past date for testing 'service not in pcp bar reason'
+    @driver.find_element(id: 'short-term-goal-target-date-0').click
+    puts DateTime.now.strftime('%m/%d/%Y')
+    @driver.find_element(id: 'short-term-goal-target-date-0').send_keys(DateTime.now.strftime('%m/%d/%Y'))
+    sleep(10)
+
+    @driver.find_element(xpath: '//label[contains(., "Who is responsible")]/..//input').send_keys('Automation who is responsible')
+
+    @driver.find_element(xpath: '//label[contains(., "Characteristics/Observation/Justification for this goal")]/..//textarea')
+        .send_keys('Automation justifaication')
+
+    @driver.find_element(xpath: '//a[contains(., "Add Short Term Goal")]').click
+end
+
+def client_signature
+    @driver.find_element(xpath: '//button[contains(., "Sign")]').click
+    canvas = @driver.find_element(xpath: '//canvas')
+    @driver.action.click_and_hold(canvas)
+        .move_by(200, 200)
+        .move_by(305, 102)
+        .release
+    @driver.find_element(xpath: '//button[contains(., "Done")]').click
+end
+
+def epin_and_sign
+    @driver.find_element(xpath: '//input[@placeholder="E-Pin"]').send_keys('1234')
+    @driver.find_element(xpath: '//button[contains(., "Submit For Approval")]').click
+    raise "Goal did not save - Clinical Goal Test Failed".red unless @driver.find_element(xpath: '//h1[contains(., "Goals")]').displayed?
+end
+
+run do
+	# 1. Login
+	login USERNAME, PASSWORD
+
+    # 2. Navigate to clients' page, click clinical chart and then click Goals
+    navigate_to_clients_page
+    navigate_to_a_client "#{CLIENT_FIRST_NAME} #{CLIENT_LAST_NAME}"
+    click_clinical_chart
+    click_goals
+
+    #3. Add a goal
+    click_add_goal
+    add_long_term_goal
+    fill_in_long_term_goal_details
+    add_short_term_goal
+    client_signature
+
+    # 4. epin and sign
+    epin_and_sign
+
+    # 5. logout
+	logout
+end
