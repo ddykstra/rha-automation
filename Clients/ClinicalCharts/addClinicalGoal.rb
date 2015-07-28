@@ -90,9 +90,7 @@ def add_short_term_goal
 
     #use a past date for testing 'service not in pcp bar reason'
     @driver.find_element(id: 'short-term-goal-target-date-0').click
-    puts DateTime.now.strftime('%m/%d/%Y')
-    @driver.find_element(id: 'short-term-goal-target-date-0').send_keys(DateTime.now.strftime('%m/%d/%Y'))
-    sleep(10)
+    @driver.find_element(id: 'short-term-goal-target-date-0').send_keys((DateTime.now - (60*60*24)).strftime('%m/%d/%Y'))
 
     @driver.find_element(xpath: '//label[contains(., "Who is responsible")]/..//input').send_keys('Automation who is responsible')
 
@@ -104,11 +102,10 @@ end
 
 def client_signature
     @driver.find_element(xpath: '//button[contains(., "Sign")]').click
-    canvas = @driver.find_element(xpath: '//canvas')
-    @driver.action.click_and_hold(canvas)
-        .move_by(200, 200)
-        .move_by(305, 102)
-        .release
+
+    signature_javascript = File.read(Dir.pwd + '/signature.js')
+    @driver.execute_script(signature_javascript)
+
     @driver.find_element(xpath: '//button[contains(., "Done")]').click
 end
 
@@ -116,6 +113,13 @@ def epin_and_sign
     @driver.find_element(xpath: '//input[@placeholder="E-Pin"]').send_keys('1234')
     @driver.find_element(xpath: '//button[contains(., "Submit For Approval")]').click
     raise "Goal did not save - Clinical Goal Test Failed".red unless @driver.find_element(xpath: '//h1[contains(., "Goals")]').displayed?
+end
+
+def qa_goal
+    @driver.find_element(xpath: '//a[@class="edit-action-link"]').click
+    client_signature
+    @driver.find_element(xpath: '//input[@placeholder="E-Pin"]').send_keys('1234')
+    @driver.find_element(xpath: '//button[contains(., "Approve")]').click
 end
 
 run do
@@ -138,6 +142,9 @@ run do
     # 4. epin and sign
     epin_and_sign
 
-    # 5. logout
+    # 5. QA
+    qa_goal
+
+    # 6. logout
 	logout
 end
